@@ -35,7 +35,7 @@
 
 #include "C2SExampleRestMethodPrototypeSayHello.h"
 
-const unsigned int iServerPort = 33456;
+const unsigned short iServerPort = 3456;
 
 const std::string sExampleRESTResourceContextRoot = "c2s-example";
 
@@ -53,7 +53,7 @@ int main( int , char ** )
 
   //register method prototypes
   //for each server thread, a copy of a method prototype is created (by calling the clone() method)
-  //this ensures that different process don't share the same path and query parameters
+  //this ensures that different processes don't share the same path and query parameters
   pResource->registerMethodPrototype( new C2SExampleRestMethodPrototypeSayHello() );
 
   C2SHttpServer httpServer( settingsForServer );
