@@ -23,7 +23,6 @@ set( C2Serve_COMPONENT_SERVER FALSE )
 set( C2Serve_COMPONENT_CLIENT FALSE )
 
 foreach( COMPONENT ${C2Serve_FIND_COMPONENTS} )
-  message( "COMPONENT: " ${COMPONENT} )
   if( ${COMPONENT} MATCHES server )
     set( C2Serve_COMPONENT_SERVER TRUE )
   elseif( ${COMPONENT} MATCHES client )
@@ -81,10 +80,10 @@ set( C2Serve_LIBRARIES
 if ( C2Serve_COMPONENT_SERVER )
   set( C2Serve_LIBRARIES
     c2s_rest
+    ${C2Serve_LIBRARIES}
     c2s_core
     c2s_socket
     c2s_log
-    ${C2Serve_LIBRARIES}
   )
 endif ( C2Serve_COMPONENT_SERVER )
 
