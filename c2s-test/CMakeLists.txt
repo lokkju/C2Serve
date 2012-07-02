@@ -9,8 +9,7 @@ if ( Boost_FOUND )
     .
     ${Boost_INCLUDE_DIRS}
   )
-  
-  add_subdirectory( basic )  
+    
   add_subdirectory( rest )
 
 endif ( Boost_FOUND )

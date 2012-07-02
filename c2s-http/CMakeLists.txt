@@ -44,3 +44,5 @@ install( TARGETS
 	c2s_httpclient
 	DESTINATION lib )
 	
+add_subdirectory( test )
+	

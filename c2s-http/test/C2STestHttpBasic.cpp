@@ -32,8 +32,6 @@
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-#include "C2STestServerRunner.h"
-
 #include "C2SHttpParser.h"
 #include "C2SHttpRequest.h"
 #include "C2SHttpResponse.h"
