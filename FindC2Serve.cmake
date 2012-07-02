@@ -16,6 +16,27 @@ message( STATUS "C2Serve root directory: " ${C2Serve_ROOT_DIR} )
 
 set( C2Serve_FOUND TRUE )
 
+#########################################################################
+#################### COMPONENTS #########################################
+
+set( C2Serve_COMPONENT_SERVER FALSE )
+set( C2Serve_COMPONENT_CLIENT FALSE )
+
+foreach( COMPONENT ${C2Serve_FIND_COMPONENTS} )
+  message( "COMPONENT: " ${COMPONENT} )
+  if( ${COMPONENT} MATCHES server )
+    set( C2Serve_COMPONENT_SERVER TRUE )
+  elseif( ${COMPONENT} MATCHES client )
+    set( C2Serve_COMPONENT_CLIENT TRUE )
+  else( ${COMPONENT} MATCHES server )
+    message( FATAL_ERROR "Unknown C2Serve component: " ${COMPONENT} )
+  endif( ${COMPONENT} MATCHES server )
+endforeach( COMPONENT ${C2Serve_FIND_COMPONENTS} )
+
+if ( NOT C2Serve_COMPONENT_SERVER AND NOT C2Serve_COMPONENT_CLIENT )
+  set( C2Serve_COMPONENT_SERVER TRUE )
+  set( C2Serve_COMPONENT_CLIENT TRUE )
+endif ( NOT C2Serve_COMPONENT_SERVER AND NOT C2Serve_COMPONENT_CLIENT )
 
 #########################################################################
 #################### INCLUDES ###########################################
@@ -53,14 +74,26 @@ if ( NOT DEFINED C2Serve_LINK_LIB_DIR )
 endif ( NOT DEFINED C2Serve_LINK_LIB_DIR )
 
 set( C2Serve_LIBRARIES
-  c2s_httpclient
-  c2s_rest
   c2s_http
-  c2s_core
-  c2s_socket
-  c2s_log
   c2s_util
 )
+
+if ( C2Serve_COMPONENT_SERVER )
+  set( C2Serve_LIBRARIES
+    c2s_rest
+    c2s_core
+    c2s_socket
+    c2s_log
+    ${C2Serve_LIBRARIES}
+  )
+endif ( C2Serve_COMPONENT_SERVER )
+
+if ( C2Serve_COMPONENT_CLIENT )
+  set( C2Serve_LIBRARIES
+    c2s_httpclient
+    ${C2Serve_LIBRARIES}
+  )
+endif ( C2Serve_COMPONENT_CLIENT )
 
 foreach( C2S_CURRENT_LIBRARY ${C2Serve_LIBRARIES} )
   set( C2S_CURRENT_LIBRARY_ABSOLUTE_FILENAME ${C2Serve_LINK_LIB_DIR}/lib${C2S_CURRENT_LIBRARY}.a )

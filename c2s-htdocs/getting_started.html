@@ -88,6 +88,22 @@
         </code>
       </div>
       
+      C2Serve comes with two components <i>server</i> and <i>client</i>.
+      If you want to use only one of these components you can specify this by using the <code>COMPONENTS</code> macro of <a href="http://www.cmake.org/" target="_blank">CMake</a>:
+      
+      
+      <div class="code">
+        <code class="cmake-lists">
+          find_package( C2Serve COMPONENTS server ) <br />
+          if ( C2Serve_FOUND ) <br />
+          &nbsp;&nbsp;include_directories( ${C2Serve_INCLUDE_DIRS} ) <br />
+          &nbsp;&nbsp;add_executable( my_c2s_server MyC2SServerMain.cpp ) <br />
+          &nbsp;&nbsp;target_link_libraries( my_c2s_server ${C2Serve_LIBRARIES} ) <br />
+          endif ( C2Serve_FOUND ) <br />
+        </code>
+      </div>
+      
+      The normal approach of including C2Serve is to build the libraries and include the headers and libraries using the find script.
       Alternatively, you can also easily add the <code>CMakeLists.txt</code> in the C2Serve root directory to your build system:
       
       <div class="code">
@@ -96,7 +112,7 @@
            add_subdirectory( ${C2Serve_ROOT_DIR} )
         </code>
       </div>
-    
+      
       First of all you should disable the C2Serve system scripts.
       Afterwards you can add the <code>C2Serve_ROOT_DIR</code> to your build paths.
       If this directory is placed outside of your source tree, <a href="http://www.cmake.org/" target="_blank">CMake</a> needs a binary directory defined to know where to build the binaries.

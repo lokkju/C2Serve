@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-find_package( C2Serve )
+find_package( C2Serve COMPONENTS client )
 
 if ( C2Serve_FOUND )
 
@@ -23,4 +23,3 @@ if ( C2Serve_FOUND )
   )
 
 endif ( C2Serve_FOUND )
-	
