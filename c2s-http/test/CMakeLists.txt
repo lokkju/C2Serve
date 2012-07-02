@@ -1,14 +1,12 @@
-
 cmake_minimum_required(VERSION 2.6)
+
 find_package( Boost COMPONENTS unit_test_framework )
 
 if ( Boost_FOUND )
 
   include_directories(
     ${C2S_PROJECT_ROOT_DIR}/c2s-http
-    ${C2S_PROJECT_ROOT_DIR}/c2s-core
     ${C2S_PROJECT_ROOT_DIR}/c2s-util
-    ${C2S_PROJECT_ROOT_DIR}/c2s-util/thread
     ${Boost_INCLUDE_DIRS}
   )
   
