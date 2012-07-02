@@ -21,3 +21,4 @@ install( TARGETS
 	c2s_rest
 	DESTINATION lib )
 	
+add_subdirectory( test )
