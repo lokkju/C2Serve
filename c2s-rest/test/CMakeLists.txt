@@ -23,6 +23,7 @@ if ( Boost_FOUND )
     C2STestRestMethodThreading
     C2STestRestMethodMediaTypeConverter
     C2STestRestMethodInvalidEntity
+    C2STestRestMethodPUT
     C2STestRestMethodDELETE
     C2STestRestEntityUnstreamerXML
     C2STestRestEntityUnstreamerJSON

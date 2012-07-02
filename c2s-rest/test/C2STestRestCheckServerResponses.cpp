@@ -38,6 +38,7 @@
 #include "C2STestRestMethodQueryFields.h"
 #include "C2STestRestMethodInvalidEntity.h"
 #include "C2STestRestMethodMediaTypeConverter.h"
+#include "C2STestRestMethodPUT.h"
 #include "C2STestRestMethodDELETE.h"
 
 #include "C2STestRestEntityStreamerXML.h"
@@ -84,6 +85,7 @@ namespace c2s
       checkForWrongContentType();
       checkForMethodTypePOSTWithDuplicateGET();
       checkForWrongMethodTypePUT();
+      checkForMethodTypePUT();
       checkForMethodTypeDELETE();
       checkForWrongMethodTypeDELETE();
       checkPathParametersAndQueryParametersWithXMLResponseEntity();
@@ -372,6 +374,19 @@ namespace c2s
           accept( c2s::C2SHttpMediaType::application__xml )
           ,
           c2s::test::C2STestRestResponse::build( c2s::MethodNotAllowed )
+
+        );
+    }
+
+    void C2STestRestCheckServerResponses::checkForMethodTypePUT()
+    {
+      BOOST_MESSAGE( "checkForMethodTypePUT" );
+      checkResponse (
+
+          c2s::test::C2STestRestRequest::
+          build( c2s::C2S_PUT , "/" + c2s::test::C2STestRestFixture::sContextRootOfTestResource + "/" + c2s::test::C2STestRestMethodPUT::sPath )
+          ,
+          c2s::test::C2STestRestResponse::build( c2s::Created )
 
         );
     }
