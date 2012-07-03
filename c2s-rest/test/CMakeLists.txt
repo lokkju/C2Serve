@@ -33,7 +33,10 @@ if ( Boost_FOUND )
   	C2STestRestCheckServerResponses
   	C2STestRestCheckMultiThreading
   	C2STestRestServerInitialization
-    C2STestRest )
+  	C2STestRestResourceDescription
+  	C2STestRestResourceDescriptionHeader
+    C2STestRest
+  )
   
   target_link_libraries( c2s_test_rest
     c2s_rest
@@ -49,7 +52,8 @@ if ( Boost_FOUND )
   
   install( TARGETS
   	c2s_test_rest
-  	DESTINATION bin )
+  	DESTINATION bin
+  )
   
   if ( NOT DISABLE_C2S_TESTING )
     add_test( c2s_test_rest c2s_test_rest )

@@ -88,6 +88,14 @@ namespace c2s
       return ls;
     }
 
+    inline std::string createIndentWithSpaces( unsigned int iNumberOfSpacesToIndent )
+    {
+      std::string sIndent;
+      for ( unsigned int i = 0; i < iNumberOfSpacesToIndent; ++i )
+        sIndent += " ";
+      return sIndent;
+    }
+
   }
 }
 

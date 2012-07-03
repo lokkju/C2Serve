@@ -15,7 +15,9 @@ add_library( c2s_rest
     C2SRestMethodPrototype
     C2SRestResourcePrototype
     C2SRestResourceDescription
-    C2SRestMatchMethodToRequest )
+    C2SRestMatchMethodToRequest
+    C2SRestResourceDescriptionHeader
+    )
 
 install( TARGETS 
 	c2s_rest
