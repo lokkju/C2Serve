@@ -29,25 +29,27 @@
 
  */
 
-#ifndef FILETOOLS_H_
-#define FILETOOLS_H_
+#ifndef FILENOTFOUNDEXCEPTION_H_
+#define FILENOTFOUNDEXCEPTION_H_
 
-#include <string>
+#include "FileUtilsException.h"
 
 namespace c2s
 {
+
   namespace util
   {
 
-    void mkDir( const std::string &directory );
+    class FileNotFoundException : public FileUtilsException
+    {
+    public:
 
-    std::string getCWD();
+      FileNotFoundException( const std::string &msg ) : FileUtilsException( msg ) {};
 
-    std::string readFileToString( const std::string &sLocationOfFileToRead );
-
-    std::string readStreamToString( std::istream &inputStreamToRead );
+    };
 
   }
+
 }
 
-#endif /*FILETOOLS_H_*/
+#endif /* FILENOTFOUNDEXCEPTION_H_ */

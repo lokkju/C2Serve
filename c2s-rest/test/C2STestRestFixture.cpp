@@ -62,6 +62,8 @@ namespace c2s
     const std::string C2STestRestFixture::sContextRootOfTestResource = "g/forrest/test/rest-check/resource-1";
     const std::string C2STestRestFixture::sContextRootOfEmptyResource = "g/forrest/test/rest-check/resource-2";
 
+    const std::string C2STestRestFixture::sPathToTestSourcesDirectory = C2S_TEST_REST_SOURCES_DIR;
+
     C2STestRestFixture::C2STestRestFixture() : m_sr( NULL )
     {
       if ( !pGlobalMutex )

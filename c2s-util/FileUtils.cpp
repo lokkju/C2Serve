@@ -32,7 +32,9 @@
 #include "FileUtils.h"
 #include "StringUtils.h"
 #include "FileExistsException.h"
+#include "FileNotFoundException.h"
 
+#include <fstream>
 #include <sys/stat.h>
 
 #ifdef WINXX
@@ -82,6 +84,19 @@ namespace c2s
       std::string sCWD = buffer;
       return sCWD;
 #endif
+    }
+
+    std::string readFileToString( const std::string &sLocationOfFileToRead )
+    {
+      std::ifstream is( sLocationOfFileToRead.c_str() );
+      if ( is.is_open() == false )
+        throw FileNotFoundException( "readFileToString: Cannot open file " + sLocationOfFileToRead );
+      return readStreamToString( is );
+    }
+
+    std::string readStreamToString( std::istream &inputStreamToRead )
+    {
+      return std::string ( ( std::istreambuf_iterator<char>( inputStreamToRead ) ) , std::istreambuf_iterator<char>() );
     }
 
   }

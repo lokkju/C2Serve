@@ -1,0 +1,16 @@
+  <head>
+
+    <style type="text/css">
+
+      body
+      {
+        background-color: #eee;
+        color: #2D313D;
+        font-family: "Gill Sans", "Trebuchet MS", "DejaVu Sans";
+        margin: 0px auto;
+        text-align: center;
+      }
+
+    </style>
+
+  </head>

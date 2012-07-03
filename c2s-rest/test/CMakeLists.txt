@@ -4,6 +4,8 @@ find_package( Boost COMPONENTS unit_test_framework )
 
 if ( Boost_FOUND )
 
+  add_definitions( -DC2S_TEST_REST_SOURCES_DIR="${CMAKE_CURRENT_SOURCE_DIR}" )
+
   include_directories(
     ${C2S_PROJECT_ROOT_DIR}/c2s-rest
     ${C2S_PROJECT_ROOT_DIR}/c2s-http

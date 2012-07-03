@@ -32,6 +32,8 @@
 #ifndef C2STESTRESTRESOURCEAPIDOCUMENTHTMLHEADER_H_
 #define C2STESTRESTRESOURCEAPIDOCUMENTHTMLHEADER_H_
 
+#include <string>
+
 namespace c2s
 {
   class C2SRestResourceAPIDocumentHTMLHeader;
@@ -51,9 +53,13 @@ namespace c2s
 
       virtual ~C2STestRestResourceAPIDocumentHTMLHeader();
 
-      void checkHTMLStringCreatedFromDescriptionHeader();
+      void readHTMLStringExpectedForAPIDocumentHeader();
+
+      void checkHTMLStringCreatedFromAPIDocumentHeader();
 
       C2SRestResourceAPIDocumentHTMLHeader *m_pRestResourceDescriptionHeader;
+
+      std::string m_sHTMLStringExpectedForAPIDocumentHeader;
 
     };
 

@@ -31,8 +31,10 @@
 
 #include "C2STestRestResourceAPIDocumentHTMLHeader.h"
 #include "C2STestRestResourceAPIDocumentStyles.h"
+#include "C2STestRestFixture.h"
 
 #include "C2SRestResourceAPIDocumentHTMLHeader.h"
+#include "FileUtils.h"
 
 #include <boost/test/unit_test.hpp>
 
@@ -56,13 +58,21 @@ namespace c2s
     {
       C2STestRestResourceAPIDocumentStyles::runTest();
       C2STestRestResourceAPIDocumentHTMLHeader testRestResourceDescriptionHeader;
-      testRestResourceDescriptionHeader.checkHTMLStringCreatedFromDescriptionHeader();
+      testRestResourceDescriptionHeader.readHTMLStringExpectedForAPIDocumentHeader();
+      testRestResourceDescriptionHeader.checkHTMLStringCreatedFromAPIDocumentHeader();
     }
 
-    void C2STestRestResourceAPIDocumentHTMLHeader::checkHTMLStringCreatedFromDescriptionHeader()
+    void C2STestRestResourceAPIDocumentHTMLHeader::readHTMLStringExpectedForAPIDocumentHeader()
+    {
+      std::string sLocationOfFileContainingExpectedHTMLHeader = C2STestRestFixture::sPathToTestSourcesDirectory + "/c2s_test_expected_html_header";
+      m_sHTMLStringExpectedForAPIDocumentHeader = util::readFileToString( sLocationOfFileContainingExpectedHTMLHeader );
+    }
+
+    void C2STestRestResourceAPIDocumentHTMLHeader::checkHTMLStringCreatedFromAPIDocumentHeader()
     {
       std::string sRestResourceDescriptionAsHTMLFormattedString = m_pRestResourceDescriptionHeader->toHTMLFormattedString();
       BOOST_MESSAGE( sRestResourceDescriptionAsHTMLFormattedString );
+      BOOST_CHECK( m_sHTMLStringExpectedForAPIDocumentHeader == sRestResourceDescriptionAsHTMLFormattedString );
     }
 
   }

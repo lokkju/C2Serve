@@ -62,6 +62,8 @@ namespace c2s
 
       static const std::string sContextRootOfEmptyResource;
 
+      static const std::string sPathToTestSourcesDirectory;
+
     private:
 
       static std::list<C2SHttpResourcePrototype*> createResources( c2s::thread::C2SMutex *pGlobalMutex );
