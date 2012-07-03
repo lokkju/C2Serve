@@ -34,6 +34,10 @@
 
 #include "C2SRestResourceAPIDocumentHTML.h"
 
+#include <fstream>
+
+#include <boost/test/unit_test.hpp>
+
 namespace c2s
 {
 
@@ -42,10 +46,11 @@ namespace c2s
     const std::string C2STestRestResourceAPIDocumentHTML::sHostName = "localhost";
     const std::string C2STestRestResourceAPIDocumentHTML::sContextRootOfTestResource = "c2serve/description";
 
+    const std::string C2STestRestResourceAPIDocumentHTML::sLocationToWriteResourceAPIDocumentHTML = "c2s.test.api_documentation.resource.html";
+
     C2STestRestResourceAPIDocumentHTML::C2STestRestResourceAPIDocumentHTML()
       : m_descriptionOfRestResource( C2STestRestResourceAPIDocumentHTML::sContextRootOfTestResource )
     {
-      this->createRestResourceDescriptionForTest();
     }
 
     C2STestRestResourceAPIDocumentHTML::~C2STestRestResourceAPIDocumentHTML()
@@ -56,10 +61,16 @@ namespace c2s
     {
       C2STestRestResourceAPIDocumentHTMLHeader::runTest();
       C2STestRestResourceAPIDocumentHTML testRestResourceDescription;
+      testRestResourceDescription.writeDescriptionOfRestResourceToHTMLFile( C2STestRestResourceAPIDocumentHTML::sLocationToWriteResourceAPIDocumentHTML );
     }
 
-    void C2STestRestResourceAPIDocumentHTML::createRestResourceDescriptionForTest()
+    void C2STestRestResourceAPIDocumentHTML::writeDescriptionOfRestResourceToHTMLFile( const std::string &sLocationOfHTMLFile ) const
     {
+      C2SRestResourceAPIDocumentHTML resourceAPIDocumentHTML( m_descriptionOfRestResource );
+      std::string sResourceAPIDocumentAsHTMLFormattedString = resourceAPIDocumentHTML.toHTMLFormattedString();
+      BOOST_MESSAGE( sResourceAPIDocumentAsHTMLFormattedString );
+      std::ofstream os( sLocationOfHTMLFile.c_str() );
+      os.write( sResourceAPIDocumentAsHTMLFormattedString.c_str() , sResourceAPIDocumentAsHTMLFormattedString.size() );
     }
 
   }

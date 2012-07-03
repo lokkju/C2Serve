@@ -30,6 +30,7 @@
  */
 
 #include "C2SRestResourceAPIDocumentHTML.h"
+#include "C2SRestResourceAPIDocumentHTMLHeader.h"
 #include "C2SRestResourceDescription.h"
 
 namespace c2s
@@ -38,19 +39,31 @@ namespace c2s
 
   C2SRestResourceAPIDocumentHTML::C2SRestResourceAPIDocumentHTML( const std::string sHostURL , const C2SRestResourceDescription &resourceDescriptionToCreateAPIDocumentFor )
     : m_sHostURL( sHostURL ),
-      m_resourceDescriptionToCreateAPIDocumentFor( resourceDescriptionToCreateAPIDocumentFor )
+      m_resourceDescriptionToCreateAPIDocumentFor( resourceDescriptionToCreateAPIDocumentFor ),
+      m_pAPIDocumentHTMLHeader( C2SRestResourceAPIDocumentHTMLHeader::createDefaultDescriptionHeader() )
   {
   }
 
   C2SRestResourceAPIDocumentHTML::C2SRestResourceAPIDocumentHTML( const C2SRestResourceDescription &resourceDescriptionToCreateAPIDocumentFor )
     : m_sHostURL( "localhost" ),
-      m_resourceDescriptionToCreateAPIDocumentFor( resourceDescriptionToCreateAPIDocumentFor )
+      m_resourceDescriptionToCreateAPIDocumentFor( resourceDescriptionToCreateAPIDocumentFor ),
+      m_pAPIDocumentHTMLHeader( C2SRestResourceAPIDocumentHTMLHeader::createDefaultDescriptionHeader() )
   {
 
   }
 
   C2SRestResourceAPIDocumentHTML::~C2SRestResourceAPIDocumentHTML()
   {
+    delete m_pAPIDocumentHTMLHeader;
+  }
+
+  std::string C2SRestResourceAPIDocumentHTML::toHTMLFormattedString() const
+  {
+    std::string sAPIDocumentAsHTMLFormattedString = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
+    sAPIDocumentAsHTMLFormattedString += "<html>\n\n";
+    sAPIDocumentAsHTMLFormattedString += m_pAPIDocumentHTMLHeader->toHTMLFormattedString() + "\n\n";
+    sAPIDocumentAsHTMLFormattedString += "</html>\n";
+    return sAPIDocumentAsHTMLFormattedString;
   }
 
   C2SHttpResponse C2SRestResourceAPIDocumentHTML::process( const C2SHttpRequest & )

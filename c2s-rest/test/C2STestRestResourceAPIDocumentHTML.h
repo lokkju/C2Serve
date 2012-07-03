@@ -53,10 +53,12 @@ namespace c2s
 
       virtual ~C2STestRestResourceAPIDocumentHTML();
 
-      void createRestResourceDescriptionForTest();
+      void writeDescriptionOfRestResourceToHTMLFile( const std::string &sLocationOfHTMLFile ) const;
 
       static const std::string sHostName;
       static const std::string sContextRootOfTestResource;
+
+      static const std::string sLocationToWriteResourceAPIDocumentHTML;
 
       C2SRestResourceDescription m_descriptionOfRestResource;
 

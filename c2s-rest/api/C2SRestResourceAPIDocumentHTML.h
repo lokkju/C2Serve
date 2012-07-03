@@ -40,6 +40,7 @@
 namespace c2s
 {
   struct C2SRestResourceDescription;
+  class C2SRestResourceAPIDocumentHTMLHeader;
 
   class C2SRestResourceAPIDocumentHTML
   {
@@ -50,6 +51,8 @@ namespace c2s
     C2SRestResourceAPIDocumentHTML( const C2SRestResourceDescription &resourceDescriptionToCreateAPIDocumentFor );
 
     virtual ~C2SRestResourceAPIDocumentHTML();
+
+    std::string toHTMLFormattedString() const;
 
     C2SHttpResponse process( const C2SHttpRequest &request );
 
@@ -64,6 +67,8 @@ namespace c2s
     std::string m_sHostURL;
 
     const C2SRestResourceDescription &m_resourceDescriptionToCreateAPIDocumentFor;
+
+    C2SRestResourceAPIDocumentHTMLHeader *m_pAPIDocumentHTMLHeader;
 
   };
 
