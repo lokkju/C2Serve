@@ -20,6 +20,7 @@ add_library( c2s_rest
   description/C2SRestResourceDescriptionHTMLHeader
   description/C2SRestResourceDescriptionStylesList
   description/C2SRestResourceDescriptionStylesClass
+  description/C2SRestResourceDescriptionCreateDefaultStyles
 )
 
 install( TARGETS c2s_rest DESTINATION lib )

@@ -30,13 +30,15 @@
  */
 
 #include "C2SRestResourceDescriptionHTMLHeader.h"
+#include "C2SRestResourceDescription.h"
+#include "C2SRestResourceDescriptionCreateDefaultStyles.h"
 #include "StringUtils.h"
 
 namespace c2s
 {
 
-  C2SRestResourceDescriptionHTMLHeader::C2SRestResourceDescriptionHTMLHeader()
-    : m_iIndentInSpaces( 2 )
+  C2SRestResourceDescriptionHTMLHeader::C2SRestResourceDescriptionHTMLHeader( const C2SRestResourceDescriptionStylesList &listOfCSSStylesForHMLTDocument )
+    : m_listOfCSSStylesForHMLTDocument( listOfCSSStylesForHMLTDocument )
   {
   }
 
@@ -46,15 +48,25 @@ namespace c2s
 
   C2SRestResourceDescriptionHTMLHeader *C2SRestResourceDescriptionHTMLHeader::createDefaultDescriptionHeader()
   {
-    return new C2SRestResourceDescriptionHTMLHeader();
+    return new C2SRestResourceDescriptionHTMLHeader( C2SRestResourceDescriptionCreateDefaultStyles::createDefaultStyles() );
   }
 
   std::string C2SRestResourceDescriptionHTMLHeader::toHTMLFormattedString() const
   {
-    std::string sIndentWithSpaces = util::createIndentWithSpaces( m_iIndentInSpaces );
-    std::string sRestResourceDescriptionHeaderAsString = sIndentWithSpaces + "<head>\n";
+    std::string sIndentWithSpaces = util::createIndentWithSpaces( C2SRestResourceDescription::iIndentInSpaces );
+    std::string sRestResourceDescriptionHeaderAsString = sIndentWithSpaces + "<head>\n\n";
+    sRestResourceDescriptionHeaderAsString += this->createHTMLElementForCSSStylesWithIndentAsSpaces( 2 * C2SRestResourceDescription::iIndentInSpaces ) + "\n\n";
     sRestResourceDescriptionHeaderAsString += sIndentWithSpaces + "</head>";
     return sRestResourceDescriptionHeaderAsString;
+  }
+
+  std::string C2SRestResourceDescriptionHTMLHeader::createHTMLElementForCSSStylesWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
+  {
+    std::string sIndentWithSpaces = util::createIndentWithSpaces( iIndentInSpaces );
+    std::string sHTMLElementForCSSStyles = sIndentWithSpaces + "<style type=\"text/css\">\n\n";
+    sHTMLElementForCSSStyles += m_listOfCSSStylesForHMLTDocument.toCSSStringWithIndentAsSpaces( iIndentInSpaces + C2SRestResourceDescription::iIndentInSpaces );
+    sHTMLElementForCSSStyles += sIndentWithSpaces + "</style>";
+    return sHTMLElementForCSSStyles;
   }
 
 }

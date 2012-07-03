@@ -29,35 +29,33 @@
 
  */
 
-#ifndef C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_
-#define C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_
+#ifndef C2SRESTRESOURCEDESCRIPTIONCREATEDEFAULTSTYLES_H_
+#define C2SRESTRESOURCEDESCRIPTIONCREATEDEFAULTSTYLES_H_
 
 #include "C2SRestResourceDescriptionStylesList.h"
-#include <string>
 
 namespace c2s
 {
 
-  class C2SRestResourceDescriptionHTMLHeader
+  class C2SRestResourceDescriptionCreateDefaultStyles
   {
   public:
 
-    static C2SRestResourceDescriptionHTMLHeader *createDefaultDescriptionHeader();
-
-    virtual ~C2SRestResourceDescriptionHTMLHeader();
-
-    std::string toHTMLFormattedString() const;
+    static C2SRestResourceDescriptionStylesList createDefaultStyles();
 
   private:
 
-    C2SRestResourceDescriptionHTMLHeader( const C2SRestResourceDescriptionStylesList &listOfCSSStylesForHMLTDocument );
+    C2SRestResourceDescriptionCreateDefaultStyles();
 
-    std::string createHTMLElementForCSSStylesWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
+    virtual ~C2SRestResourceDescriptionCreateDefaultStyles();
 
-    C2SRestResourceDescriptionStylesList m_listOfCSSStylesForHMLTDocument;
+    void createStyles();
+    void createStylesForBody();
+
+    C2SRestResourceDescriptionStylesList m_defaultListOfCSSStylesForResourceDescription;
 
   };
 
 }
 
-#endif /* C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_ */
+#endif /* C2SRESTRESOURCEDESCRIPTIONCREATEDEFAULTSTYLES_H_ */

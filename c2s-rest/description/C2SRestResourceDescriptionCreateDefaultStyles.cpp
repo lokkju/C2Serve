@@ -29,35 +29,40 @@
 
  */
 
-#ifndef C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_
-#define C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_
-
-#include "C2SRestResourceDescriptionStylesList.h"
-#include <string>
+#include "C2SRestResourceDescriptionCreateDefaultStyles.h"
 
 namespace c2s
 {
 
-  class C2SRestResourceDescriptionHTMLHeader
+  C2SRestResourceDescriptionCreateDefaultStyles::C2SRestResourceDescriptionCreateDefaultStyles()
   {
-  public:
+  }
 
-    static C2SRestResourceDescriptionHTMLHeader *createDefaultDescriptionHeader();
+  C2SRestResourceDescriptionCreateDefaultStyles::~C2SRestResourceDescriptionCreateDefaultStyles()
+  {
+  }
 
-    virtual ~C2SRestResourceDescriptionHTMLHeader();
+  C2SRestResourceDescriptionStylesList C2SRestResourceDescriptionCreateDefaultStyles::createDefaultStyles()
+  {
+    C2SRestResourceDescriptionCreateDefaultStyles createDefaultStyles;
+    createDefaultStyles.createStyles();
+    return createDefaultStyles.m_defaultListOfCSSStylesForResourceDescription;
+  }
 
-    std::string toHTMLFormattedString() const;
+  void C2SRestResourceDescriptionCreateDefaultStyles::createStyles()
+  {
+    this->createStylesForBody();
+  }
 
-  private:
-
-    C2SRestResourceDescriptionHTMLHeader( const C2SRestResourceDescriptionStylesList &listOfCSSStylesForHMLTDocument );
-
-    std::string createHTMLElementForCSSStylesWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
-
-    C2SRestResourceDescriptionStylesList m_listOfCSSStylesForHMLTDocument;
-
-  };
+  void C2SRestResourceDescriptionCreateDefaultStyles::createStylesForBody()
+  {
+    C2SRestResourceDescriptionStylesClass stylesClass( "body" );
+    stylesClass.addStyle( "background-color" , "#eee" );
+    stylesClass.addStyle( "text-align" , "center" );
+    stylesClass.addStyle( "margin" , "0px auto" );
+    stylesClass.addStyle( "color" , "#2D313D" );
+    stylesClass.addStyle( "font-family" , "\"Gill Sans\", \"Trebuchet MS\", \"DejaVu Sans\"" );
+    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
+  }
 
 }
-
-#endif /* C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_ */
