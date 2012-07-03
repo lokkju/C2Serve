@@ -29,10 +29,9 @@
 
  */
 
-#include "C2STestRestResourceDescriptionHeader.h"
 #include "C2STestRestResourceDescriptionStyles.h"
 
-#include "C2SRestResourceDescriptionHeader.h"
+#include "C2SRestResourceDescriptionException.h"
 
 #include <boost/test/unit_test.hpp>
 
@@ -42,27 +41,28 @@ namespace c2s
   namespace test
   {
 
-    C2STestRestResourceDescriptionHeader::C2STestRestResourceDescriptionHeader()
-      : m_pRestResourceDescriptionHeader( C2SRestResourceDescriptionHeader::createDefaultDescriptionHeader() )
+    C2STestRestResourceDescriptionStyles::C2STestRestResourceDescriptionStyles()
     {
     }
 
-    C2STestRestResourceDescriptionHeader::~C2STestRestResourceDescriptionHeader()
+    C2STestRestResourceDescriptionStyles::~C2STestRestResourceDescriptionStyles()
     {
-      delete m_pRestResourceDescriptionHeader;
     }
 
-    void C2STestRestResourceDescriptionHeader::runTest()
+    void C2STestRestResourceDescriptionStyles::runTest()
     {
-      C2STestRestResourceDescriptionStyles::runTest();
-      C2STestRestResourceDescriptionHeader testRestResourceDescriptionHeader;
-      testRestResourceDescriptionHeader.checkHTMLStringCreatedFromDescriptionHeader();
+      C2STestRestResourceDescriptionStyles testRestResourceDescriptionStyles;
+      testRestResourceDescriptionStyles.createAndCheckStylesForHTMLElementDiv();
     }
 
-    void C2STestRestResourceDescriptionHeader::checkHTMLStringCreatedFromDescriptionHeader()
+    void C2STestRestResourceDescriptionStyles::createAndCheckStylesForHTMLElementDiv()
     {
-      std::string sRestResourceDescriptionAsHTMLFormattedString = m_pRestResourceDescriptionHeader->toHTMLFormattedString();
-      BOOST_MESSAGE( sRestResourceDescriptionAsHTMLFormattedString );
+      C2SRestResourceDescriptionStylesClass stylesForHTMLElement( "div" );
+      stylesForHTMLElement.addStyle( "background-color" , "#eee" );
+      BOOST_CHECK_THROW( stylesForHTMLElement.addStyle( "background-color" , "#eee" ) , C2SRestResourceDescriptionException );
+      stylesForHTMLElement.addStyle( "text-align" , "center" );
+      m_listOfStylesForHTMLElements.addStylesForCSSClass( stylesForHTMLElement );
+      BOOST_CHECK_THROW( m_listOfStylesForHTMLElements.addStylesForCSSClass( stylesForHTMLElement ) , C2SRestResourceDescriptionException );
     }
 
   }

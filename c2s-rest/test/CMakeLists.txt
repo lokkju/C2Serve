@@ -35,6 +35,7 @@ if ( Boost_FOUND )
   	C2STestRestServerInitialization
   	C2STestRestResourceDescription
   	C2STestRestResourceDescriptionHeader
+  	C2STestRestResourceDescriptionStyles
     C2STestRest
   )
   

@@ -29,42 +29,25 @@
 
  */
 
-#include "C2STestRestResourceDescriptionHeader.h"
-#include "C2STestRestResourceDescriptionStyles.h"
-
-#include "C2SRestResourceDescriptionHeader.h"
-
-#include <boost/test/unit_test.hpp>
+#include "C2SRestResourceDescriptionStylesList.h"
+#include "C2SRestResourceDescriptionException.h"
 
 namespace c2s
 {
 
-  namespace test
+  C2SRestResourceDescriptionStylesList::C2SRestResourceDescriptionStylesList()
   {
+  }
 
-    C2STestRestResourceDescriptionHeader::C2STestRestResourceDescriptionHeader()
-      : m_pRestResourceDescriptionHeader( C2SRestResourceDescriptionHeader::createDefaultDescriptionHeader() )
-    {
-    }
+  C2SRestResourceDescriptionStylesList::~C2SRestResourceDescriptionStylesList()
+  {
+  }
 
-    C2STestRestResourceDescriptionHeader::~C2STestRestResourceDescriptionHeader()
-    {
-      delete m_pRestResourceDescriptionHeader;
-    }
-
-    void C2STestRestResourceDescriptionHeader::runTest()
-    {
-      C2STestRestResourceDescriptionStyles::runTest();
-      C2STestRestResourceDescriptionHeader testRestResourceDescriptionHeader;
-      testRestResourceDescriptionHeader.checkHTMLStringCreatedFromDescriptionHeader();
-    }
-
-    void C2STestRestResourceDescriptionHeader::checkHTMLStringCreatedFromDescriptionHeader()
-    {
-      std::string sRestResourceDescriptionAsHTMLFormattedString = m_pRestResourceDescriptionHeader->toHTMLFormattedString();
-      BOOST_MESSAGE( sRestResourceDescriptionAsHTMLFormattedString );
-    }
-
+  void C2SRestResourceDescriptionStylesList::addStylesForCSSClass( const C2SRestResourceDescriptionStylesClass &stylesForHTMLElement )
+  {
+    if ( m_listOfStylesForHTMLElements.find( stylesForHTMLElement ) != m_listOfStylesForHTMLElements.end() )
+      throw C2SRestResourceDescriptionException( "C2SRestResourceDescriptionStylesList::addStylesForCSSClass: " , "Duplicate CSS class: " + stylesForHTMLElement.getClassName() , InternalServerError );
+    m_listOfStylesForHTMLElements.insert( stylesForHTMLElement );
   }
 
 }

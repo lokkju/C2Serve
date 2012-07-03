@@ -29,42 +29,32 @@
 
  */
 
-#include "C2STestRestResourceDescriptionHeader.h"
-#include "C2STestRestResourceDescriptionStyles.h"
+#ifndef C2SRESTRESOURCEDESCRIPTIONSTYLESLIST_H_
+#define C2SRESTRESOURCEDESCRIPTIONSTYLESLIST_H_
 
-#include "C2SRestResourceDescriptionHeader.h"
+#include "C2SRestResourceDescriptionStylesClass.h"
 
-#include <boost/test/unit_test.hpp>
+#include <set>
 
 namespace c2s
 {
 
-  namespace test
+  class C2SRestResourceDescriptionStylesList
   {
+  public:
 
-    C2STestRestResourceDescriptionHeader::C2STestRestResourceDescriptionHeader()
-      : m_pRestResourceDescriptionHeader( C2SRestResourceDescriptionHeader::createDefaultDescriptionHeader() )
-    {
-    }
+    C2SRestResourceDescriptionStylesList();
 
-    C2STestRestResourceDescriptionHeader::~C2STestRestResourceDescriptionHeader()
-    {
-      delete m_pRestResourceDescriptionHeader;
-    }
+    virtual ~C2SRestResourceDescriptionStylesList();
 
-    void C2STestRestResourceDescriptionHeader::runTest()
-    {
-      C2STestRestResourceDescriptionStyles::runTest();
-      C2STestRestResourceDescriptionHeader testRestResourceDescriptionHeader;
-      testRestResourceDescriptionHeader.checkHTMLStringCreatedFromDescriptionHeader();
-    }
+    void addStylesForCSSClass( const C2SRestResourceDescriptionStylesClass &stylesForHTMLElement );
 
-    void C2STestRestResourceDescriptionHeader::checkHTMLStringCreatedFromDescriptionHeader()
-    {
-      std::string sRestResourceDescriptionAsHTMLFormattedString = m_pRestResourceDescriptionHeader->toHTMLFormattedString();
-      BOOST_MESSAGE( sRestResourceDescriptionAsHTMLFormattedString );
-    }
+  private:
 
-  }
+    std::set<C2SRestResourceDescriptionStylesClass> m_listOfStylesForHTMLElements;
+
+  };
 
 }
+
+#endif /* C2SRESTRESOURCEDESCRIPTIONSTYLESLIST_H_ */
