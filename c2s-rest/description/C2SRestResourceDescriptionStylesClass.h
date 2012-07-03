@@ -48,11 +48,15 @@ namespace c2s
 
     void addStyle( const std::string &sCSSPropertyName , const std::string &sCSSPropertyValue );
 
+    std::string toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
+
     const std::string &getClassName() const { return m_sCSSClassName; }
 
     bool operator<( const C2SRestResourceDescriptionStylesClass &c ) const { return m_sCSSClassName < c.m_sCSSClassName; }
 
   private:
+
+    std::string createStringFromStylesWithIndent( unsigned int iIndentInSpaces ) const;
 
     std::string m_sCSSClassName;
 

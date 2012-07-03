@@ -54,6 +54,10 @@ namespace c2s
 
       void createAndCheckStylesForHTMLElementDiv();
 
+      void createAndCheckStylesForHTMLElementDivClassCode();
+
+      void checkStringCreatedForStyles() const;
+
       C2SRestResourceDescriptionStylesList m_listOfStylesForHTMLElements;
 
     };

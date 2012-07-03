@@ -31,6 +31,7 @@
 
 #include "C2SRestResourceDescriptionStylesList.h"
 #include "C2SRestResourceDescriptionException.h"
+#include "StringUtils.h"
 
 namespace c2s
 {
@@ -48,6 +49,17 @@ namespace c2s
     if ( m_listOfStylesForHTMLElements.find( stylesForHTMLElement ) != m_listOfStylesForHTMLElements.end() )
       throw C2SRestResourceDescriptionException( "C2SRestResourceDescriptionStylesList::addStylesForCSSClass: " , "Duplicate CSS class: " + stylesForHTMLElement.getClassName() , InternalServerError );
     m_listOfStylesForHTMLElements.insert( stylesForHTMLElement );
+  }
+
+  std::string C2SRestResourceDescriptionStylesList::toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
+  {
+    std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
+    std::string sStylesAsCSSFormattedString;
+    std::set<C2SRestResourceDescriptionStylesClass>::const_iterator it = m_listOfStylesForHTMLElements.begin();
+    std::set<C2SRestResourceDescriptionStylesClass>::const_iterator end = m_listOfStylesForHTMLElements.end();
+    for ( ; it != end; ++it )
+      sStylesAsCSSFormattedString += it->toCSSStringWithIndentAsSpaces( iIndentInSpaces ) + "\n\n";
+    return sStylesAsCSSFormattedString;
   }
 
 }

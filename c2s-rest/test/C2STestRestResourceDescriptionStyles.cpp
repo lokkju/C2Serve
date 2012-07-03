@@ -53,6 +53,8 @@ namespace c2s
     {
       C2STestRestResourceDescriptionStyles testRestResourceDescriptionStyles;
       testRestResourceDescriptionStyles.createAndCheckStylesForHTMLElementDiv();
+      testRestResourceDescriptionStyles.createAndCheckStylesForHTMLElementDivClassCode();
+      testRestResourceDescriptionStyles.checkStringCreatedForStyles();
     }
 
     void C2STestRestResourceDescriptionStyles::createAndCheckStylesForHTMLElementDiv()
@@ -63,6 +65,28 @@ namespace c2s
       stylesForHTMLElement.addStyle( "text-align" , "center" );
       m_listOfStylesForHTMLElements.addStylesForCSSClass( stylesForHTMLElement );
       BOOST_CHECK_THROW( m_listOfStylesForHTMLElements.addStylesForCSSClass( stylesForHTMLElement ) , C2SRestResourceDescriptionException );
+      std::string sCSSStringCreatedFromStyles = stylesForHTMLElement.toCSSStringWithIndentAsSpaces( 4 );
+      std::string sCSSStringExpectedFromStyles = "    div\n    {\n      background-color: #eee;\n      text-align: center;\n    }";
+      BOOST_CHECK( sCSSStringCreatedFromStyles == sCSSStringExpectedFromStyles );
+    }
+
+    void C2STestRestResourceDescriptionStyles::createAndCheckStylesForHTMLElementDivClassCode()
+    {
+      C2SRestResourceDescriptionStylesClass stylesForHTMLElement( "div.code" );
+      stylesForHTMLElement.addStyle( "background-color" , "#aaa" );
+      stylesForHTMLElement.addStyle( "font-size" , "8pt" );
+      stylesForHTMLElement.addStyle( "margin" , "0px auto" );
+      std::string sCSSStringCreatedFromStyles = stylesForHTMLElement.toCSSStringWithIndentAsSpaces( 2 );
+      std::string sCSSStringExpectedFromStyles = "  div.code\n  {\n    background-color: #aaa;\n    font-size: 8pt;\n    margin: 0px auto;\n  }";
+      BOOST_CHECK( sCSSStringCreatedFromStyles == sCSSStringExpectedFromStyles );
+      m_listOfStylesForHTMLElements.addStylesForCSSClass( stylesForHTMLElement );
+    }
+
+    void C2STestRestResourceDescriptionStyles::checkStringCreatedForStyles() const
+    {
+      std::string sCSSStringCreatedFromStyles = m_listOfStylesForHTMLElements.toCSSStringWithIndentAsSpaces( 2 );
+      std::string sCSSStringExpectedFromStyles = "  div\n  {\n    background-color: #eee;\n    text-align: center;\n  }\n\n  div.code\n  {\n    background-color: #aaa;\n    font-size: 8pt;\n    margin: 0px auto;\n  }\n\n";
+      BOOST_CHECK( sCSSStringCreatedFromStyles == sCSSStringExpectedFromStyles );
     }
 
   }

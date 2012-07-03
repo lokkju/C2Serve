@@ -33,6 +33,7 @@
 
 namespace c2s
 {
+  const unsigned int C2SRestResourceDescription::iIndentInSpaces = 2;
 
   C2SRestResourceDescription::C2SRestResourceDescription( const std::string sHostURL , const std::string &sContextRoot )
     : m_sHostURL( sHostURL ),

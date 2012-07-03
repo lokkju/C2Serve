@@ -50,6 +50,8 @@ namespace c2s
 
     C2SHttpResponse process( const C2SHttpRequest &request );
 
+    static const unsigned int iIndentInSpaces;
+
   private:
 
     std::string createHtmlHeader();

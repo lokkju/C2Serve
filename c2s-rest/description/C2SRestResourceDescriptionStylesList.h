@@ -49,6 +49,8 @@ namespace c2s
 
     void addStylesForCSSClass( const C2SRestResourceDescriptionStylesClass &stylesForHTMLElement );
 
+    std::string toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
+
   private:
 
     std::set<C2SRestResourceDescriptionStylesClass> m_listOfStylesForHTMLElements;

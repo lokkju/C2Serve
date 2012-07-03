@@ -31,6 +31,9 @@
 
 #include "C2SRestResourceDescriptionStylesClass.h"
 #include "C2SRestResourceDescriptionException.h"
+#include "C2SRestResourceDescription.h"
+
+#include "StringUtils.h"
 
 namespace c2s
 {
@@ -49,6 +52,27 @@ namespace c2s
     if ( m_mapContainingStyles.find( sCSSPropertyName ) != m_mapContainingStyles.end() )
       throw C2SRestResourceDescriptionException( "C2SRestResourceDescriptionStylesClass::addStyle: " , "Duplicate CSS property for class " + m_sCSSClassName + ": " + sCSSPropertyName , InternalServerError );
     m_mapContainingStyles[ sCSSPropertyName ] = sCSSPropertyValue;
+  }
+
+  std::string C2SRestResourceDescriptionStylesClass::toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
+  {
+    std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
+    std::string sCSSStylesAsString = sIndent + m_sCSSClassName + "\n";
+    sCSSStylesAsString += sIndent + "{\n";
+    sCSSStylesAsString += this->createStringFromStylesWithIndent( iIndentInSpaces + C2SRestResourceDescription::iIndentInSpaces );
+    sCSSStylesAsString += sIndent + "}";
+    return sCSSStylesAsString;
+  }
+
+  std::string C2SRestResourceDescriptionStylesClass::createStringFromStylesWithIndent( unsigned int iIndentInSpaces ) const
+  {
+    std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
+    std::string sStylesAsCSSString;
+    std::map<std::string,std::string>::const_iterator it = m_mapContainingStyles.begin();
+    std::map<std::string,std::string>::const_iterator end = m_mapContainingStyles.end();
+    for ( ; it != end; ++it )
+      sStylesAsCSSString += sIndent + it->first + ": " + it->second + ";\n";
+    return sStylesAsCSSString;
   }
 
 }
