@@ -17,7 +17,7 @@ add_library( c2s_rest
   C2SRestResourcePrototype
   C2SRestMatchMethodToRequest
   description/C2SRestResourceDescription
-  description/C2SRestResourceDescriptionHeader
+  description/C2SRestResourceDescriptionHTMLHeader
   description/C2SRestResourceDescriptionStylesList
   description/C2SRestResourceDescriptionStylesClass
 )

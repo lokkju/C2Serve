@@ -29,27 +29,27 @@
 
  */
 
-#include "C2SRestResourceDescriptionHeader.h"
+#include "C2SRestResourceDescriptionHTMLHeader.h"
 #include "StringUtils.h"
 
 namespace c2s
 {
 
-  C2SRestResourceDescriptionHeader::C2SRestResourceDescriptionHeader()
+  C2SRestResourceDescriptionHTMLHeader::C2SRestResourceDescriptionHTMLHeader()
     : m_iIndentInSpaces( 2 )
   {
   }
 
-  C2SRestResourceDescriptionHeader::~C2SRestResourceDescriptionHeader()
+  C2SRestResourceDescriptionHTMLHeader::~C2SRestResourceDescriptionHTMLHeader()
   {
   }
 
-  C2SRestResourceDescriptionHeader *C2SRestResourceDescriptionHeader::createDefaultDescriptionHeader()
+  C2SRestResourceDescriptionHTMLHeader *C2SRestResourceDescriptionHTMLHeader::createDefaultDescriptionHeader()
   {
-    return new C2SRestResourceDescriptionHeader();
+    return new C2SRestResourceDescriptionHTMLHeader();
   }
 
-  std::string C2SRestResourceDescriptionHeader::toHTMLFormattedString() const
+  std::string C2SRestResourceDescriptionHTMLHeader::toHTMLFormattedString() const
   {
     std::string sIndentWithSpaces = util::createIndentWithSpaces( m_iIndentInSpaces );
     std::string sRestResourceDescriptionHeaderAsString = sIndentWithSpaces + "<head>\n";

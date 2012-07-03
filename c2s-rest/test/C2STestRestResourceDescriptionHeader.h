@@ -34,7 +34,7 @@
 
 namespace c2s
 {
-  class C2SRestResourceDescriptionHeader;
+  class C2SRestResourceDescriptionHTMLHeader;
 
   namespace test
   {
@@ -53,7 +53,7 @@ namespace c2s
 
       void checkHTMLStringCreatedFromDescriptionHeader();
 
-      C2SRestResourceDescriptionHeader *m_pRestResourceDescriptionHeader;
+      C2SRestResourceDescriptionHTMLHeader *m_pRestResourceDescriptionHeader;
 
     };
 

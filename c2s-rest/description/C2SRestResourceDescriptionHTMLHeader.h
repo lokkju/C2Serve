@@ -29,27 +29,27 @@
 
  */
 
-#ifndef C2SRESTRESOURCEDESCRIPTIONHEADER_H_
-#define C2SRESTRESOURCEDESCRIPTIONHEADER_H_
+#ifndef C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_
+#define C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_
 
 #include <string>
 
 namespace c2s
 {
 
-  class C2SRestResourceDescriptionHeader
+  class C2SRestResourceDescriptionHTMLHeader
   {
   public:
 
-    static C2SRestResourceDescriptionHeader *createDefaultDescriptionHeader();
+    static C2SRestResourceDescriptionHTMLHeader *createDefaultDescriptionHeader();
 
-    virtual ~C2SRestResourceDescriptionHeader();
+    virtual ~C2SRestResourceDescriptionHTMLHeader();
 
     std::string toHTMLFormattedString() const;
 
   private:
 
-    C2SRestResourceDescriptionHeader();
+    C2SRestResourceDescriptionHTMLHeader();
 
     unsigned int m_iIndentInSpaces;
 
@@ -57,4 +57,4 @@ namespace c2s
 
 }
 
-#endif /* C2SRESTRESOURCEDESCRIPTIONHEADER_H_ */
+#endif /* C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_ */

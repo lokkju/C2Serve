@@ -32,7 +32,7 @@
 #include "C2STestRestResourceDescriptionHeader.h"
 #include "C2STestRestResourceDescriptionStyles.h"
 
-#include "C2SRestResourceDescriptionHeader.h"
+#include "C2SRestResourceDescriptionHTMLHeader.h"
 
 #include <boost/test/unit_test.hpp>
 
@@ -43,7 +43,7 @@ namespace c2s
   {
 
     C2STestRestResourceDescriptionHeader::C2STestRestResourceDescriptionHeader()
-      : m_pRestResourceDescriptionHeader( C2SRestResourceDescriptionHeader::createDefaultDescriptionHeader() )
+      : m_pRestResourceDescriptionHeader( C2SRestResourceDescriptionHTMLHeader::createDefaultDescriptionHeader() )
     {
     }
 
