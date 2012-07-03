@@ -29,41 +29,34 @@
 
  */
 
-#ifndef C2STESTRESTRESOURCEDESCRIPTIONSTYLES_H_
-#define C2STESTRESTRESOURCEDESCRIPTIONSTYLES_H_
+#ifndef C2SRESTRESOURCEAPIDOCUMENTSTYLESLIST_H_
+#define C2SRESTRESOURCEAPIDOCUMENTSTYLESLIST_H_
 
-#include "C2SRestResourceDescriptionStylesList.h"
+#include "C2SRestResourceAPIDocumentStylesClass.h"
+
+#include <set>
 
 namespace c2s
 {
 
-  namespace test
+  class C2SRestResourceAPIDocumentStylesList
   {
+  public:
 
-    class C2STestRestResourceDescriptionStyles
-    {
-    public:
+    C2SRestResourceAPIDocumentStylesList();
 
-      static void runTest();
+    virtual ~C2SRestResourceAPIDocumentStylesList();
 
-    private:
+    void addStylesForCSSClass( const C2SRestResourceAPIDocumentStylesClass &stylesForHTMLElement );
 
-      C2STestRestResourceDescriptionStyles();
+    std::string toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
 
-      virtual ~C2STestRestResourceDescriptionStyles();
+  private:
 
-      void createAndCheckStylesForHTMLElementDiv();
+    std::set<C2SRestResourceAPIDocumentStylesClass> m_listOfStylesForHTMLElements;
 
-      void createAndCheckStylesForHTMLElementDivClassCode();
-
-      void checkStringCreatedForStyles() const;
-
-      C2SRestResourceDescriptionStylesList m_listOfStylesForHTMLElements;
-
-    };
-
-  }
+  };
 
 }
 
-#endif /* C2STESTRESTRESOURCEDESCRIPTIONSTYLES_H_ */
+#endif /* C2SRESTRESOURCEAPIDOCUMENTSTYLESLIST_H_ */

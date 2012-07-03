@@ -29,33 +29,36 @@
 
  */
 
-#ifndef C2SRESTRESOURCEDESCRIPTIONCREATEDEFAULTSTYLES_H_
-#define C2SRESTRESOURCEDESCRIPTIONCREATEDEFAULTSTYLES_H_
-
-#include "C2SRestResourceDescriptionStylesList.h"
+#ifndef C2STESTRESTRESOURCEAPIDOCUMENTHTMLHEADER_H_
+#define C2STESTRESTRESOURCEAPIDOCUMENTHTMLHEADER_H_
 
 namespace c2s
 {
+  class C2SRestResourceAPIDocumentHTMLHeader;
 
-  class C2SRestResourceDescriptionCreateDefaultStyles
+  namespace test
   {
-  public:
 
-    static C2SRestResourceDescriptionStylesList createDefaultStyles();
+    class C2STestRestResourceAPIDocumentHTMLHeader
+    {
+    public:
 
-  private:
+      static void runTest();
 
-    C2SRestResourceDescriptionCreateDefaultStyles();
+    private:
 
-    virtual ~C2SRestResourceDescriptionCreateDefaultStyles();
+      C2STestRestResourceAPIDocumentHTMLHeader();
 
-    void createStyles();
-    void createStylesForBody();
+      virtual ~C2STestRestResourceAPIDocumentHTMLHeader();
 
-    C2SRestResourceDescriptionStylesList m_defaultListOfCSSStylesForResourceDescription;
+      void checkHTMLStringCreatedFromDescriptionHeader();
 
-  };
+      C2SRestResourceAPIDocumentHTMLHeader *m_pRestResourceDescriptionHeader;
+
+    };
+
+  }
 
 }
 
-#endif /* C2SRESTRESOURCEDESCRIPTIONCREATEDEFAULTSTYLES_H_ */
+#endif /* C2STESTRESTRESOURCEAPIDOCUMENTHTMLHEADER_H_ */

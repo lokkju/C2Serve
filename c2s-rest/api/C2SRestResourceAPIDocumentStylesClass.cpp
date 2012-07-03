@@ -29,42 +29,42 @@
 
  */
 
-#include "C2SRestResourceDescriptionStylesClass.h"
-#include "C2SRestResourceDescriptionException.h"
-#include "C2SRestResourceDescription.h"
+#include "C2SRestResourceAPIDocumentStylesClass.h"
+#include "C2SRestResourceAPIDocumentException.h"
+#include "C2SRestResourceAPIDocumentHTML.h"
 
 #include "StringUtils.h"
 
 namespace c2s
 {
 
-  C2SRestResourceDescriptionStylesClass::C2SRestResourceDescriptionStylesClass( const std::string &sCSSClassName )
+  C2SRestResourceAPIDocumentStylesClass::C2SRestResourceAPIDocumentStylesClass( const std::string &sCSSClassName )
     : m_sCSSClassName( sCSSClassName )
   {
   }
 
-  C2SRestResourceDescriptionStylesClass::~C2SRestResourceDescriptionStylesClass()
+  C2SRestResourceAPIDocumentStylesClass::~C2SRestResourceAPIDocumentStylesClass()
   {
   }
 
-  void C2SRestResourceDescriptionStylesClass::addStyle( const std::string &sCSSPropertyName , const std::string &sCSSPropertyValue )
+  void C2SRestResourceAPIDocumentStylesClass::addStyle( const std::string &sCSSPropertyName , const std::string &sCSSPropertyValue )
   {
     if ( m_mapContainingStyles.find( sCSSPropertyName ) != m_mapContainingStyles.end() )
-      throw C2SRestResourceDescriptionException( "C2SRestResourceDescriptionStylesClass::addStyle: " , "Duplicate CSS property for class " + m_sCSSClassName + ": " + sCSSPropertyName , InternalServerError );
+      throw C2SRestResourceAPIDocumentException( "C2SRestResourceAPIDocumentStylesClass::addStyle: " , "Duplicate CSS property for class " + m_sCSSClassName + ": " + sCSSPropertyName , InternalServerError );
     m_mapContainingStyles[ sCSSPropertyName ] = sCSSPropertyValue;
   }
 
-  std::string C2SRestResourceDescriptionStylesClass::toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
+  std::string C2SRestResourceAPIDocumentStylesClass::toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
   {
     std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
     std::string sCSSStylesAsString = sIndent + m_sCSSClassName + "\n";
     sCSSStylesAsString += sIndent + "{\n";
-    sCSSStylesAsString += this->createStringFromStylesWithIndent( iIndentInSpaces + C2SRestResourceDescription::iIndentInSpaces );
+    sCSSStylesAsString += this->createStringFromStylesWithIndent( iIndentInSpaces + C2SRestResourceAPIDocumentHTML::iIndentInSpaces );
     sCSSStylesAsString += sIndent + "}";
     return sCSSStylesAsString;
   }
 
-  std::string C2SRestResourceDescriptionStylesClass::createStringFromStylesWithIndent( unsigned int iIndentInSpaces ) const
+  std::string C2SRestResourceAPIDocumentStylesClass::createStringFromStylesWithIndent( unsigned int iIndentInSpaces ) const
   {
     std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
     std::string sStylesAsCSSString;

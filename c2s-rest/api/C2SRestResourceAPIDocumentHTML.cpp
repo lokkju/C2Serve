@@ -29,41 +29,63 @@
 
  */
 
-#ifndef C2SRESTRESOURCEDESCRIPTION_H_
-#define C2SRESTRESOURCEDESCRIPTION_H_
-
-#include "C2SHttpResponse.h"
-#include "C2SHttpRequest.h"
-
-#include <string>
+#include "C2SRestResourceAPIDocumentHTML.h"
 
 namespace c2s
 {
+  const unsigned int C2SRestResourceAPIDocumentHTML::iIndentInSpaces = 2;
 
-  class C2SRestResourceDescription
+  C2SRestResourceAPIDocumentHTML::C2SRestResourceAPIDocumentHTML( const std::string sHostURL , const std::string &sContextRoot )
+    : m_sHostURL( sHostURL ),
+      m_sContextRoot( sContextRoot )
   {
-  public:
+  }
 
-    C2SRestResourceDescription( const std::string sHostURL , const std::string &sContextRoot );
+  C2SRestResourceAPIDocumentHTML::~C2SRestResourceAPIDocumentHTML()
+  {
+  }
 
-    virtual ~C2SRestResourceDescription();
+  C2SHttpResponse C2SRestResourceAPIDocumentHTML::process( const C2SHttpRequest & )
+  {
+    std::string sContent = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
+    sContent += "<html>";
 
-    C2SHttpResponse process( const C2SHttpRequest &request );
+    sContent += this->createHtmlHeader();
+    sContent += this->createHtmlBody();
 
-    static const unsigned int iIndentInSpaces;
+    sContent += "</html>";
 
-  private:
+    C2SHttpResponseHeader responseHeader( OK );
+    responseHeader.Fields.setContentType( C2SHttpMediaType::text__html );
+    responseHeader.Fields.setContentLength( sContent.size() );
+    C2SHttpResponse response( responseHeader );
+    char *data = new char[ sContent.size() ];
+    std::memcpy( data , sContent.c_str() , sContent.size() );
+    response.setEntity( new C2SHttpEntity( data , sContent.size() , true ) );
+    return response;
+  }
 
-    std::string createHtmlHeader();
+  std::string C2SRestResourceAPIDocumentHTML::createHtmlHeader()
+  {
+    std::string sHeader;
 
-    std::string createHtmlBody();
+    sHeader += "<header>";
+    sHeader += "</header>";
 
-    std::string m_sHostURL;
+    return sHeader;
+  }
 
-    std::string m_sContextRoot;
+  std::string C2SRestResourceAPIDocumentHTML::createHtmlBody()
+  {
+    std::string sBody;
 
-  };
+    sBody += "<body>";
+
+    sBody += "http://" + m_sHostURL + ":" + "PORT" + "/" + m_sContextRoot;
+
+    sBody += "</body>";
+
+    return sBody;
+  }
 
 }
-
-#endif /* C2SRESTRESOURCEDESCRIPTION_H_ */

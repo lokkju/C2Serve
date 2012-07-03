@@ -29,40 +29,40 @@
 
  */
 
-#include "C2SRestResourceDescriptionCreateDefaultStyles.h"
+#include "C2STestRestResourceAPIDocumentHTML.h"
+#include "C2STestRestResourceAPIDocumentHTMLHeader.h"
+
+#include "C2SRestResourceAPIDocumentHTML.h"
 
 namespace c2s
 {
 
-  C2SRestResourceDescriptionCreateDefaultStyles::C2SRestResourceDescriptionCreateDefaultStyles()
+  namespace test
   {
-  }
+    const std::string C2STestRestResourceAPIDocumentHTML::sHostName = "localhost";
+    const std::string C2STestRestResourceAPIDocumentHTML::sContextRootOfTestResource = "c2serve/description";
 
-  C2SRestResourceDescriptionCreateDefaultStyles::~C2SRestResourceDescriptionCreateDefaultStyles()
-  {
-  }
+    C2STestRestResourceAPIDocumentHTML::C2STestRestResourceAPIDocumentHTML()
+    {
+      this->createRestResourceDescriptionForTest();
+    }
 
-  C2SRestResourceDescriptionStylesList C2SRestResourceDescriptionCreateDefaultStyles::createDefaultStyles()
-  {
-    C2SRestResourceDescriptionCreateDefaultStyles createDefaultStyles;
-    createDefaultStyles.createStyles();
-    return createDefaultStyles.m_defaultListOfCSSStylesForResourceDescription;
-  }
+    C2STestRestResourceAPIDocumentHTML::~C2STestRestResourceAPIDocumentHTML()
+    {
+      delete m_pRestResourceDescription;
+    }
 
-  void C2SRestResourceDescriptionCreateDefaultStyles::createStyles()
-  {
-    this->createStylesForBody();
-  }
+    void C2STestRestResourceAPIDocumentHTML::runTest()
+    {
+      C2STestRestResourceAPIDocumentHTMLHeader::runTest();
+      C2STestRestResourceAPIDocumentHTML testRestResourceDescription;
+    }
 
-  void C2SRestResourceDescriptionCreateDefaultStyles::createStylesForBody()
-  {
-    C2SRestResourceDescriptionStylesClass stylesClass( "body" );
-    stylesClass.addStyle( "background-color" , "#eee" );
-    stylesClass.addStyle( "text-align" , "center" );
-    stylesClass.addStyle( "margin" , "0px auto" );
-    stylesClass.addStyle( "color" , "#2D313D" );
-    stylesClass.addStyle( "font-family" , "\"Gill Sans\", \"Trebuchet MS\", \"DejaVu Sans\"" );
-    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
+    void C2STestRestResourceAPIDocumentHTML::createRestResourceDescriptionForTest()
+    {
+      m_pRestResourceDescription = new C2SRestResourceAPIDocumentHTML( sHostName , sContextRootOfTestResource );
+    }
+
   }
 
 }

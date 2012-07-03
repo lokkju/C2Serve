@@ -29,35 +29,41 @@
 
  */
 
-#ifndef C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_
-#define C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_
+#ifndef C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
+#define C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
 
-#include "C2SRestResourceDescriptionStylesList.h"
 #include <string>
 
 namespace c2s
 {
+  class C2SRestResourceAPIDocumentHTML;
 
-  class C2SRestResourceDescriptionHTMLHeader
+  namespace test
   {
-  public:
 
-    static C2SRestResourceDescriptionHTMLHeader *createDefaultDescriptionHeader();
+    class C2STestRestResourceAPIDocumentHTML
+    {
+    public:
 
-    virtual ~C2SRestResourceDescriptionHTMLHeader();
+      static void runTest();
 
-    std::string toHTMLFormattedString() const;
+    private:
 
-  private:
+      C2STestRestResourceAPIDocumentHTML();
 
-    C2SRestResourceDescriptionHTMLHeader( const C2SRestResourceDescriptionStylesList &listOfCSSStylesForHMLTDocument );
+      virtual ~C2STestRestResourceAPIDocumentHTML();
 
-    std::string createHTMLElementForCSSStylesWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
+      void createRestResourceDescriptionForTest();
 
-    C2SRestResourceDescriptionStylesList m_listOfCSSStylesForHMLTDocument;
+      static const std::string sHostName;
+      static const std::string sContextRootOfTestResource;
 
-  };
+      C2SRestResourceAPIDocumentHTML *m_pRestResourceDescription;
+
+    };
+
+  }
 
 }
 
-#endif /* C2SRESTRESOURCEDESCRIPTIONHTMLHEADER_H_ */
+#endif /* C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_ */

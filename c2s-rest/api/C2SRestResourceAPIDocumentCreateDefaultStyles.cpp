@@ -29,36 +29,40 @@
 
  */
 
-#ifndef C2STESTRESTRESOURCEDESCRIPTIONHEADER_H_
-#define C2STESTRESTRESOURCEDESCRIPTIONHEADER_H_
+#include "C2SRestResourceAPIDocumentCreateDefaultStyles.h"
 
 namespace c2s
 {
-  class C2SRestResourceDescriptionHTMLHeader;
 
-  namespace test
+  C2SRestResourceAPIDocumentCreateDefaultStyles::C2SRestResourceAPIDocumentCreateDefaultStyles()
   {
+  }
 
-    class C2STestRestResourceDescriptionHeader
-    {
-    public:
+  C2SRestResourceAPIDocumentCreateDefaultStyles::~C2SRestResourceAPIDocumentCreateDefaultStyles()
+  {
+  }
 
-      static void runTest();
+  C2SRestResourceAPIDocumentStylesList C2SRestResourceAPIDocumentCreateDefaultStyles::createDefaultStyles()
+  {
+    C2SRestResourceAPIDocumentCreateDefaultStyles createDefaultStyles;
+    createDefaultStyles.createStyles();
+    return createDefaultStyles.m_defaultListOfCSSStylesForResourceDescription;
+  }
 
-    private:
+  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStyles()
+  {
+    this->createStylesForBody();
+  }
 
-      C2STestRestResourceDescriptionHeader();
-
-      virtual ~C2STestRestResourceDescriptionHeader();
-
-      void checkHTMLStringCreatedFromDescriptionHeader();
-
-      C2SRestResourceDescriptionHTMLHeader *m_pRestResourceDescriptionHeader;
-
-    };
-
+  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStylesForBody()
+  {
+    C2SRestResourceAPIDocumentStylesClass stylesClass( "body" );
+    stylesClass.addStyle( "background-color" , "#eee" );
+    stylesClass.addStyle( "text-align" , "center" );
+    stylesClass.addStyle( "margin" , "0px auto" );
+    stylesClass.addStyle( "color" , "#2D313D" );
+    stylesClass.addStyle( "font-family" , "\"Gill Sans\", \"Trebuchet MS\", \"DejaVu Sans\"" );
+    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
   }
 
 }
-
-#endif /* C2STESTRESTRESOURCEDESCRIPTIONHEADER_H_ */

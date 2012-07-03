@@ -29,41 +29,37 @@
 
  */
 
-#ifndef C2SRESTRESOURCEDESCRIPTIONSTYLESCLASS_H_
-#define C2SRESTRESOURCEDESCRIPTIONSTYLESCLASS_H_
-
-#include <map>
-#include <string>
+#include "C2SRestResourceAPIDocumentStylesList.h"
+#include "C2SRestResourceAPIDocumentException.h"
+#include "StringUtils.h"
 
 namespace c2s
 {
 
-  class C2SRestResourceDescriptionStylesClass
+  C2SRestResourceAPIDocumentStylesList::C2SRestResourceAPIDocumentStylesList()
   {
-  public:
+  }
 
-    C2SRestResourceDescriptionStylesClass( const std::string &sCSSClassName );
+  C2SRestResourceAPIDocumentStylesList::~C2SRestResourceAPIDocumentStylesList()
+  {
+  }
 
-    virtual ~C2SRestResourceDescriptionStylesClass();
+  void C2SRestResourceAPIDocumentStylesList::addStylesForCSSClass( const C2SRestResourceAPIDocumentStylesClass &stylesForHTMLElement )
+  {
+    if ( m_listOfStylesForHTMLElements.find( stylesForHTMLElement ) != m_listOfStylesForHTMLElements.end() )
+      throw C2SRestResourceAPIDocumentException( "C2SRestResourceAPIDocumentStylesList::addStylesForCSSClass: " , "Duplicate CSS class: " + stylesForHTMLElement.getClassName() , InternalServerError );
+    m_listOfStylesForHTMLElements.insert( stylesForHTMLElement );
+  }
 
-    void addStyle( const std::string &sCSSPropertyName , const std::string &sCSSPropertyValue );
-
-    std::string toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
-
-    const std::string &getClassName() const { return m_sCSSClassName; }
-
-    bool operator<( const C2SRestResourceDescriptionStylesClass &c ) const { return m_sCSSClassName < c.m_sCSSClassName; }
-
-  private:
-
-    std::string createStringFromStylesWithIndent( unsigned int iIndentInSpaces ) const;
-
-    std::string m_sCSSClassName;
-
-    std::map<std::string,std::string> m_mapContainingStyles;
-
-  };
+  std::string C2SRestResourceAPIDocumentStylesList::toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
+  {
+    std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
+    std::string sStylesAsCSSFormattedString;
+    std::set<C2SRestResourceAPIDocumentStylesClass>::const_iterator it = m_listOfStylesForHTMLElements.begin();
+    std::set<C2SRestResourceAPIDocumentStylesClass>::const_iterator end = m_listOfStylesForHTMLElements.end();
+    for ( ; it != end; ++it )
+      sStylesAsCSSFormattedString += it->toCSSStringWithIndentAsSpaces( iIndentInSpaces ) + "\n\n";
+    return sStylesAsCSSFormattedString;
+  }
 
 }
-
-#endif /* C2SRESTRESOURCEDESCRIPTIONSTYLESCLASS_H_ */

@@ -30,25 +30,25 @@
  */
 
 
-#ifndef C2SRESTRESOURCEDESCRIPTIONEXCEPTION_H_
-#define C2SRESTRESOURCEDESCRIPTIONEXCEPTION_H_
+#ifndef C2SRESTRESOURCEAPIDOCUMENTEXCEPTION_H_
+#define C2SRESTRESOURCEAPIDOCUMENTEXCEPTION_H_
 
 #include "C2SRestException.h"
 
 namespace c2s
 {
 
-  class C2SRestResourceDescriptionException : public C2SRestException
+  class C2SRestResourceAPIDocumentException : public C2SRestException
   {
   public:
 
-    C2SRestResourceDescriptionException( const std::string &sClassAndFunctionPrefix , const std::string &sErrorMessage , C2SHttpStatus status ) : C2SRestException( sClassAndFunctionPrefix , sErrorMessage , status ) {};
+    C2SRestResourceAPIDocumentException( const std::string &sClassAndFunctionPrefix , const std::string &sErrorMessage , C2SHttpStatus status ) : C2SRestException( sClassAndFunctionPrefix , sErrorMessage , status ) {};
 
-    virtual ~C2SRestResourceDescriptionException() throw() {};
+    virtual ~C2SRestResourceAPIDocumentException() throw() {};
 
   };
 
 }
 
 
-#endif /* C2SRESTRESOURCEDESCRIPTIONEXCEPTION_H_ */
+#endif /* C2SRESTRESOURCEAPIDOCUMENTEXCEPTION_H_ */

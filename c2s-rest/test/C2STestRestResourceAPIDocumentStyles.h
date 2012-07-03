@@ -29,37 +29,41 @@
 
  */
 
-#include "C2SRestResourceDescriptionStylesList.h"
-#include "C2SRestResourceDescriptionException.h"
-#include "StringUtils.h"
+#ifndef C2STESTRESTRESOURCEAPIDOCUMENTSTYLES_H_
+#define C2STESTRESTRESOURCEAPIDOCUMENTSTYLES_H_
+
+#include "C2SRestResourceAPIDocumentStylesList.h"
 
 namespace c2s
 {
 
-  C2SRestResourceDescriptionStylesList::C2SRestResourceDescriptionStylesList()
+  namespace test
   {
-  }
 
-  C2SRestResourceDescriptionStylesList::~C2SRestResourceDescriptionStylesList()
-  {
-  }
+    class C2STestRestResourceAPIDocumentStyles
+    {
+    public:
 
-  void C2SRestResourceDescriptionStylesList::addStylesForCSSClass( const C2SRestResourceDescriptionStylesClass &stylesForHTMLElement )
-  {
-    if ( m_listOfStylesForHTMLElements.find( stylesForHTMLElement ) != m_listOfStylesForHTMLElements.end() )
-      throw C2SRestResourceDescriptionException( "C2SRestResourceDescriptionStylesList::addStylesForCSSClass: " , "Duplicate CSS class: " + stylesForHTMLElement.getClassName() , InternalServerError );
-    m_listOfStylesForHTMLElements.insert( stylesForHTMLElement );
-  }
+      static void runTest();
 
-  std::string C2SRestResourceDescriptionStylesList::toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
-  {
-    std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
-    std::string sStylesAsCSSFormattedString;
-    std::set<C2SRestResourceDescriptionStylesClass>::const_iterator it = m_listOfStylesForHTMLElements.begin();
-    std::set<C2SRestResourceDescriptionStylesClass>::const_iterator end = m_listOfStylesForHTMLElements.end();
-    for ( ; it != end; ++it )
-      sStylesAsCSSFormattedString += it->toCSSStringWithIndentAsSpaces( iIndentInSpaces ) + "\n\n";
-    return sStylesAsCSSFormattedString;
+    private:
+
+      C2STestRestResourceAPIDocumentStyles();
+
+      virtual ~C2STestRestResourceAPIDocumentStyles();
+
+      void createAndCheckStylesForHTMLElementDiv();
+
+      void createAndCheckStylesForHTMLElementDivClassCode();
+
+      void checkStringCreatedForStyles() const;
+
+      C2SRestResourceAPIDocumentStylesList m_listOfStylesForHTMLElements;
+
+    };
+
   }
 
 }
+
+#endif /* C2STESTRESTRESOURCEAPIDOCUMENTSTYLES_H_ */

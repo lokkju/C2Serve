@@ -33,9 +33,9 @@ if ( Boost_FOUND )
   	C2STestRestCheckServerResponses
   	C2STestRestCheckMultiThreading
   	C2STestRestServerInitialization
-  	C2STestRestResourceDescription
-  	C2STestRestResourceDescriptionHeader
-  	C2STestRestResourceDescriptionStyles
+  	C2STestRestResourceAPIDocumentHTML
+  	C2STestRestResourceAPIDocumentHTMLHeader
+  	C2STestRestResourceAPIDocumentStyles
     C2STestRest
   )
   

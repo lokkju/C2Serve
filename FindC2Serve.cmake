@@ -51,6 +51,7 @@ set( C2S_INCLUDE_DIRS_RELATIVE
   c2s-core
   c2s-http
   c2s-rest
+  c2s-rest/api
 )
 
 foreach( C2S_CURRENT_INCLUDE_DIR_RELATIVE ${C2S_INCLUDE_DIRS_RELATIVE} )

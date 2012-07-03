@@ -29,9 +29,9 @@
 
  */
 
-#include "C2STestRestResourceDescriptionStyles.h"
+#include "C2STestRestResourceAPIDocumentStyles.h"
 
-#include "C2SRestResourceDescriptionException.h"
+#include "C2SRestResourceAPIDocumentException.h"
 
 #include <boost/test/unit_test.hpp>
 
@@ -41,38 +41,38 @@ namespace c2s
   namespace test
   {
 
-    C2STestRestResourceDescriptionStyles::C2STestRestResourceDescriptionStyles()
+    C2STestRestResourceAPIDocumentStyles::C2STestRestResourceAPIDocumentStyles()
     {
     }
 
-    C2STestRestResourceDescriptionStyles::~C2STestRestResourceDescriptionStyles()
+    C2STestRestResourceAPIDocumentStyles::~C2STestRestResourceAPIDocumentStyles()
     {
     }
 
-    void C2STestRestResourceDescriptionStyles::runTest()
+    void C2STestRestResourceAPIDocumentStyles::runTest()
     {
-      C2STestRestResourceDescriptionStyles testRestResourceDescriptionStyles;
+      C2STestRestResourceAPIDocumentStyles testRestResourceDescriptionStyles;
       testRestResourceDescriptionStyles.createAndCheckStylesForHTMLElementDiv();
       testRestResourceDescriptionStyles.createAndCheckStylesForHTMLElementDivClassCode();
       testRestResourceDescriptionStyles.checkStringCreatedForStyles();
     }
 
-    void C2STestRestResourceDescriptionStyles::createAndCheckStylesForHTMLElementDiv()
+    void C2STestRestResourceAPIDocumentStyles::createAndCheckStylesForHTMLElementDiv()
     {
-      C2SRestResourceDescriptionStylesClass stylesForHTMLElement( "div" );
+      C2SRestResourceAPIDocumentStylesClass stylesForHTMLElement( "div" );
       stylesForHTMLElement.addStyle( "background-color" , "#eee" );
-      BOOST_CHECK_THROW( stylesForHTMLElement.addStyle( "background-color" , "#eee" ) , C2SRestResourceDescriptionException );
+      BOOST_CHECK_THROW( stylesForHTMLElement.addStyle( "background-color" , "#eee" ) , C2SRestResourceAPIDocumentException );
       stylesForHTMLElement.addStyle( "text-align" , "center" );
       m_listOfStylesForHTMLElements.addStylesForCSSClass( stylesForHTMLElement );
-      BOOST_CHECK_THROW( m_listOfStylesForHTMLElements.addStylesForCSSClass( stylesForHTMLElement ) , C2SRestResourceDescriptionException );
+      BOOST_CHECK_THROW( m_listOfStylesForHTMLElements.addStylesForCSSClass( stylesForHTMLElement ) , C2SRestResourceAPIDocumentException );
       std::string sCSSStringCreatedFromStyles = stylesForHTMLElement.toCSSStringWithIndentAsSpaces( 4 );
       std::string sCSSStringExpectedFromStyles = "    div\n    {\n      background-color: #eee;\n      text-align: center;\n    }";
       BOOST_CHECK( sCSSStringCreatedFromStyles == sCSSStringExpectedFromStyles );
     }
 
-    void C2STestRestResourceDescriptionStyles::createAndCheckStylesForHTMLElementDivClassCode()
+    void C2STestRestResourceAPIDocumentStyles::createAndCheckStylesForHTMLElementDivClassCode()
     {
-      C2SRestResourceDescriptionStylesClass stylesForHTMLElement( "div.code" );
+      C2SRestResourceAPIDocumentStylesClass stylesForHTMLElement( "div.code" );
       stylesForHTMLElement.addStyle( "background-color" , "#aaa" );
       stylesForHTMLElement.addStyle( "font-size" , "8pt" );
       stylesForHTMLElement.addStyle( "margin" , "0px auto" );
@@ -82,7 +82,7 @@ namespace c2s
       m_listOfStylesForHTMLElements.addStylesForCSSClass( stylesForHTMLElement );
     }
 
-    void C2STestRestResourceDescriptionStyles::checkStringCreatedForStyles() const
+    void C2STestRestResourceAPIDocumentStyles::checkStringCreatedForStyles() const
     {
       std::string sCSSStringCreatedFromStyles = m_listOfStylesForHTMLElements.toCSSStringWithIndentAsSpaces( 2 );
       std::string sCSSStringExpectedFromStyles = "  div\n  {\n    background-color: #eee;\n    text-align: center;\n  }\n\n  div.code\n  {\n    background-color: #aaa;\n    font-size: 8pt;\n    margin: 0px auto;\n  }\n\n";

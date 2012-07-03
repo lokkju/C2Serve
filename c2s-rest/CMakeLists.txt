@@ -6,7 +6,7 @@ include_directories(
   ${C2S_PROJECT_ROOT_DIR}/c2s-util
   ${C2S_PROJECT_ROOT_DIR}/c2s-util/io
   .
-  description
+  api
 )
 
 add_library( c2s_rest
@@ -16,11 +16,11 @@ add_library( c2s_rest
   C2SRestMethodPrototype
   C2SRestResourcePrototype
   C2SRestMatchMethodToRequest
-  description/C2SRestResourceDescription
-  description/C2SRestResourceDescriptionHTMLHeader
-  description/C2SRestResourceDescriptionStylesList
-  description/C2SRestResourceDescriptionStylesClass
-  description/C2SRestResourceDescriptionCreateDefaultStyles
+  api/C2SRestResourceAPIDocumentHTML
+  api/C2SRestResourceAPIDocumentHTMLHeader
+  api/C2SRestResourceAPIDocumentStylesList
+  api/C2SRestResourceAPIDocumentStylesClass
+  api/C2SRestResourceAPIDocumentCreateDefaultStyles
 )
 
 install( TARGETS c2s_rest DESTINATION lib )

@@ -29,40 +29,33 @@
 
  */
 
-#include "C2STestRestResourceDescription.h"
-#include "C2STestRestResourceDescriptionHeader.h"
+#ifndef C2SRESTRESOURCEAPIDOCUMENTCREATEDEFAULTSTYLES_H_
+#define C2SRESTRESOURCEAPIDOCUMENTCREATEDEFAULTSTYLES_H_
 
-#include "C2SRestResourceDescription.h"
+#include "C2SRestResourceAPIDocumentStylesList.h"
 
 namespace c2s
 {
 
-  namespace test
+  class C2SRestResourceAPIDocumentCreateDefaultStyles
   {
-    const std::string C2STestRestResourceDescription::sHostName = "localhost";
-    const std::string C2STestRestResourceDescription::sContextRootOfTestResource = "c2serve/description";
+  public:
 
-    C2STestRestResourceDescription::C2STestRestResourceDescription()
-    {
-      this->createRestResourceDescriptionForTest();
-    }
+    static C2SRestResourceAPIDocumentStylesList createDefaultStyles();
 
-    C2STestRestResourceDescription::~C2STestRestResourceDescription()
-    {
-      delete m_pRestResourceDescription;
-    }
+  private:
 
-    void C2STestRestResourceDescription::runTest()
-    {
-      C2STestRestResourceDescriptionHeader::runTest();
-      C2STestRestResourceDescription testRestResourceDescription;
-    }
+    C2SRestResourceAPIDocumentCreateDefaultStyles();
 
-    void C2STestRestResourceDescription::createRestResourceDescriptionForTest()
-    {
-      m_pRestResourceDescription = new C2SRestResourceDescription( sHostName , sContextRootOfTestResource );
-    }
+    virtual ~C2SRestResourceAPIDocumentCreateDefaultStyles();
 
-  }
+    void createStyles();
+    void createStylesForBody();
+
+    C2SRestResourceAPIDocumentStylesList m_defaultListOfCSSStylesForResourceDescription;
+
+  };
 
 }
+
+#endif /* C2SRESTRESOURCEAPIDOCUMENTCREATEDEFAULTSTYLES_H_ */

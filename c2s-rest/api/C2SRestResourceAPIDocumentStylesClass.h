@@ -29,34 +29,41 @@
 
  */
 
-#ifndef C2SRESTRESOURCEDESCRIPTIONSTYLESLIST_H_
-#define C2SRESTRESOURCEDESCRIPTIONSTYLESLIST_H_
+#ifndef C2SRESTRESOURCEAPIDOCUMENTSTYLESCLASS_H_
+#define C2SRESTRESOURCEAPIDOCUMENTSTYLESCLASS_H_
 
-#include "C2SRestResourceDescriptionStylesClass.h"
-
-#include <set>
+#include <map>
+#include <string>
 
 namespace c2s
 {
 
-  class C2SRestResourceDescriptionStylesList
+  class C2SRestResourceAPIDocumentStylesClass
   {
   public:
 
-    C2SRestResourceDescriptionStylesList();
+    C2SRestResourceAPIDocumentStylesClass( const std::string &sCSSClassName );
 
-    virtual ~C2SRestResourceDescriptionStylesList();
+    virtual ~C2SRestResourceAPIDocumentStylesClass();
 
-    void addStylesForCSSClass( const C2SRestResourceDescriptionStylesClass &stylesForHTMLElement );
+    void addStyle( const std::string &sCSSPropertyName , const std::string &sCSSPropertyValue );
 
     std::string toCSSStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
 
+    const std::string &getClassName() const { return m_sCSSClassName; }
+
+    bool operator<( const C2SRestResourceAPIDocumentStylesClass &c ) const { return m_sCSSClassName < c.m_sCSSClassName; }
+
   private:
 
-    std::set<C2SRestResourceDescriptionStylesClass> m_listOfStylesForHTMLElements;
+    std::string createStringFromStylesWithIndent( unsigned int iIndentInSpaces ) const;
+
+    std::string m_sCSSClassName;
+
+    std::map<std::string,std::string> m_mapContainingStyles;
 
   };
 
 }
 
-#endif /* C2SRESTRESOURCEDESCRIPTIONSTYLESLIST_H_ */
+#endif /* C2SRESTRESOURCEAPIDOCUMENTSTYLESCLASS_H_ */

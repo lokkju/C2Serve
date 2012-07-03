@@ -29,10 +29,10 @@
 
  */
 
-#include "C2STestRestResourceDescriptionHeader.h"
-#include "C2STestRestResourceDescriptionStyles.h"
+#include "C2STestRestResourceAPIDocumentHTMLHeader.h"
+#include "C2STestRestResourceAPIDocumentStyles.h"
 
-#include "C2SRestResourceDescriptionHTMLHeader.h"
+#include "C2SRestResourceAPIDocumentHTMLHeader.h"
 
 #include <boost/test/unit_test.hpp>
 
@@ -42,24 +42,24 @@ namespace c2s
   namespace test
   {
 
-    C2STestRestResourceDescriptionHeader::C2STestRestResourceDescriptionHeader()
-      : m_pRestResourceDescriptionHeader( C2SRestResourceDescriptionHTMLHeader::createDefaultDescriptionHeader() )
+    C2STestRestResourceAPIDocumentHTMLHeader::C2STestRestResourceAPIDocumentHTMLHeader()
+      : m_pRestResourceDescriptionHeader( C2SRestResourceAPIDocumentHTMLHeader::createDefaultDescriptionHeader() )
     {
     }
 
-    C2STestRestResourceDescriptionHeader::~C2STestRestResourceDescriptionHeader()
+    C2STestRestResourceAPIDocumentHTMLHeader::~C2STestRestResourceAPIDocumentHTMLHeader()
     {
       delete m_pRestResourceDescriptionHeader;
     }
 
-    void C2STestRestResourceDescriptionHeader::runTest()
+    void C2STestRestResourceAPIDocumentHTMLHeader::runTest()
     {
-      C2STestRestResourceDescriptionStyles::runTest();
-      C2STestRestResourceDescriptionHeader testRestResourceDescriptionHeader;
+      C2STestRestResourceAPIDocumentStyles::runTest();
+      C2STestRestResourceAPIDocumentHTMLHeader testRestResourceDescriptionHeader;
       testRestResourceDescriptionHeader.checkHTMLStringCreatedFromDescriptionHeader();
     }
 
-    void C2STestRestResourceDescriptionHeader::checkHTMLStringCreatedFromDescriptionHeader()
+    void C2STestRestResourceAPIDocumentHTMLHeader::checkHTMLStringCreatedFromDescriptionHeader()
     {
       std::string sRestResourceDescriptionAsHTMLFormattedString = m_pRestResourceDescriptionHeader->toHTMLFormattedString();
       BOOST_MESSAGE( sRestResourceDescriptionAsHTMLFormattedString );

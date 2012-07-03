@@ -29,42 +29,42 @@
 
  */
 
-#include "C2SRestResourceDescriptionHTMLHeader.h"
-#include "C2SRestResourceDescription.h"
-#include "C2SRestResourceDescriptionCreateDefaultStyles.h"
+#include "C2SRestResourceAPIDocumentHTMLHeader.h"
+#include "C2SRestResourceAPIDocumentHTML.h"
+#include "C2SRestResourceAPIDocumentCreateDefaultStyles.h"
 #include "StringUtils.h"
 
 namespace c2s
 {
 
-  C2SRestResourceDescriptionHTMLHeader::C2SRestResourceDescriptionHTMLHeader( const C2SRestResourceDescriptionStylesList &listOfCSSStylesForHMLTDocument )
+  C2SRestResourceAPIDocumentHTMLHeader::C2SRestResourceAPIDocumentHTMLHeader( const C2SRestResourceAPIDocumentStylesList &listOfCSSStylesForHMLTDocument )
     : m_listOfCSSStylesForHMLTDocument( listOfCSSStylesForHMLTDocument )
   {
   }
 
-  C2SRestResourceDescriptionHTMLHeader::~C2SRestResourceDescriptionHTMLHeader()
+  C2SRestResourceAPIDocumentHTMLHeader::~C2SRestResourceAPIDocumentHTMLHeader()
   {
   }
 
-  C2SRestResourceDescriptionHTMLHeader *C2SRestResourceDescriptionHTMLHeader::createDefaultDescriptionHeader()
+  C2SRestResourceAPIDocumentHTMLHeader *C2SRestResourceAPIDocumentHTMLHeader::createDefaultDescriptionHeader()
   {
-    return new C2SRestResourceDescriptionHTMLHeader( C2SRestResourceDescriptionCreateDefaultStyles::createDefaultStyles() );
+    return new C2SRestResourceAPIDocumentHTMLHeader( C2SRestResourceAPIDocumentCreateDefaultStyles::createDefaultStyles() );
   }
 
-  std::string C2SRestResourceDescriptionHTMLHeader::toHTMLFormattedString() const
+  std::string C2SRestResourceAPIDocumentHTMLHeader::toHTMLFormattedString() const
   {
-    std::string sIndentWithSpaces = util::createIndentWithSpaces( C2SRestResourceDescription::iIndentInSpaces );
+    std::string sIndentWithSpaces = util::createIndentWithSpaces( C2SRestResourceAPIDocumentHTML::iIndentInSpaces );
     std::string sRestResourceDescriptionHeaderAsString = sIndentWithSpaces + "<head>\n\n";
-    sRestResourceDescriptionHeaderAsString += this->createHTMLElementForCSSStylesWithIndentAsSpaces( 2 * C2SRestResourceDescription::iIndentInSpaces ) + "\n\n";
+    sRestResourceDescriptionHeaderAsString += this->createHTMLElementForCSSStylesWithIndentAsSpaces( 2 * C2SRestResourceAPIDocumentHTML::iIndentInSpaces ) + "\n\n";
     sRestResourceDescriptionHeaderAsString += sIndentWithSpaces + "</head>";
     return sRestResourceDescriptionHeaderAsString;
   }
 
-  std::string C2SRestResourceDescriptionHTMLHeader::createHTMLElementForCSSStylesWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
+  std::string C2SRestResourceAPIDocumentHTMLHeader::createHTMLElementForCSSStylesWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
   {
     std::string sIndentWithSpaces = util::createIndentWithSpaces( iIndentInSpaces );
     std::string sHTMLElementForCSSStyles = sIndentWithSpaces + "<style type=\"text/css\">\n\n";
-    sHTMLElementForCSSStyles += m_listOfCSSStylesForHMLTDocument.toCSSStringWithIndentAsSpaces( iIndentInSpaces + C2SRestResourceDescription::iIndentInSpaces );
+    sHTMLElementForCSSStyles += m_listOfCSSStylesForHMLTDocument.toCSSStringWithIndentAsSpaces( iIndentInSpaces + C2SRestResourceAPIDocumentHTML::iIndentInSpaces );
     sHTMLElementForCSSStyles += sIndentWithSpaces + "</style>";
     return sHTMLElementForCSSStyles;
   }

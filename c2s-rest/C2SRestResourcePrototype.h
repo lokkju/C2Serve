@@ -36,7 +36,7 @@
 
 #include "C2SRestMethodPrototype.h"
 #include "C2SRestMethodPrototypeList.h"
-#include "C2SRestResourceDescription.h"
+#include "C2SRestResourceAPIDocumentHTML.h"
 
 #include <list>
 
@@ -76,7 +76,7 @@ namespace c2s
 
     C2SRestMethodPrototypeList m_registeredMethodPrototypes;
 
-    C2SRestResourceDescription m_resourceDescription;
+    C2SRestResourceAPIDocumentHTML m_resourceDescription;
 
   };
 
