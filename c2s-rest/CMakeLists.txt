@@ -17,6 +17,7 @@ add_library( c2s_rest
   C2SRestResourcePrototype
   C2SRestMatchMethodToRequest
   api/C2SRestResourceAPIDocumentHTML
+  api/C2SRestResourceAPIDocumentHTMLBody
   api/C2SRestResourceAPIDocumentHTMLHeader
   api/C2SRestResourceAPIDocumentStylesList
   api/C2SRestResourceAPIDocumentStylesClass

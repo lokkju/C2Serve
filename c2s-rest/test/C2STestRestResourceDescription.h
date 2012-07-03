@@ -29,11 +29,10 @@
 
  */
 
-#ifndef C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
-#define C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
+#ifndef C2STESTRESTRESOURCEDESCRIPTION_H_
+#define C2STESTRESTRESOURCEDESCRIPTION_H_
 
 #include "C2SRestResourceDescription.h"
-#include <string>
 
 namespace c2s
 {
@@ -41,25 +40,19 @@ namespace c2s
   namespace test
   {
 
-    class C2STestRestResourceAPIDocumentHTML
+    class C2STestRestResourceDescription
     {
     public:
 
-      static void runTest();
+      static C2SRestResourceDescription createRestResourceDescription();
 
     private:
 
-      C2STestRestResourceAPIDocumentHTML();
+      C2STestRestResourceDescription();
 
-      virtual ~C2STestRestResourceAPIDocumentHTML();
+      virtual ~C2STestRestResourceDescription();
 
-      void writeDescriptionOfRestResourceToHTMLFile( const std::string &sLocationOfHTMLFile ) const;
-
-      static const std::string sHostName;
-
-      static const std::string sLocationToWriteResourceAPIDocumentHTML;
-
-      C2SRestResourceDescription m_descriptionOfRestResource;
+      static const std::string sContextRootOfTestResource;
 
     };
 
@@ -67,4 +60,4 @@ namespace c2s
 
 }
 
-#endif /* C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_ */
+#endif /* C2STESTRESTRESOURCEDESCRIPTION_H_ */

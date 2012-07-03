@@ -29,14 +29,13 @@
 
  */
 
-#include "C2STestRestResourceAPIDocumentHTML.h"
-#include "C2STestRestResourceAPIDocumentHTMLHeader.h"
 #include "C2STestRestResourceAPIDocumentHTMLBody.h"
 #include "C2STestRestResourceDescription.h"
+#include "C2STestRestFixture.h"
 
-#include "C2SRestResourceAPIDocumentHTML.h"
+#include "C2SRestResourceAPIDocumentHTMLBody.h"
 
-#include <fstream>
+#include "FileUtils.h"
 
 #include <boost/test/unit_test.hpp>
 
@@ -45,33 +44,35 @@ namespace c2s
 
   namespace test
   {
-    const std::string C2STestRestResourceAPIDocumentHTML::sHostName = "localhost";
-    const std::string C2STestRestResourceAPIDocumentHTML::sLocationToWriteResourceAPIDocumentHTML = "c2s.test.api_documentation.resource.html";
 
-    C2STestRestResourceAPIDocumentHTML::C2STestRestResourceAPIDocumentHTML()
+    C2STestRestResourceAPIDocumentHTMLBody::C2STestRestResourceAPIDocumentHTMLBody()
       : m_descriptionOfRestResource( C2STestRestResourceDescription::createRestResourceDescription() )
     {
     }
 
-    C2STestRestResourceAPIDocumentHTML::~C2STestRestResourceAPIDocumentHTML()
+    C2STestRestResourceAPIDocumentHTMLBody::~C2STestRestResourceAPIDocumentHTMLBody()
     {
     }
 
-    void C2STestRestResourceAPIDocumentHTML::runTest()
+    void C2STestRestResourceAPIDocumentHTMLBody::runTest()
     {
-      C2STestRestResourceAPIDocumentHTMLHeader::runTest();
-      C2STestRestResourceAPIDocumentHTMLBody::runTest();
-      C2STestRestResourceAPIDocumentHTML testRestResourceDescription;
-      testRestResourceDescription.writeDescriptionOfRestResourceToHTMLFile( C2STestRestResourceAPIDocumentHTML::sLocationToWriteResourceAPIDocumentHTML );
+      C2STestRestResourceAPIDocumentHTMLBody testRestResourceAPIDocumentHTMLBody;
+      testRestResourceAPIDocumentHTMLBody.readHTMLStringExpectedForAPIDocumentBody();
+      testRestResourceAPIDocumentHTMLBody.checkHTMLStringCreatedFromAPIDocumentBody();
     }
 
-    void C2STestRestResourceAPIDocumentHTML::writeDescriptionOfRestResourceToHTMLFile( const std::string &sLocationOfHTMLFile ) const
+    void C2STestRestResourceAPIDocumentHTMLBody::readHTMLStringExpectedForAPIDocumentBody()
     {
-      C2SRestResourceAPIDocumentHTML resourceAPIDocumentHTML( m_descriptionOfRestResource );
-      std::string sResourceAPIDocumentAsHTMLFormattedString = resourceAPIDocumentHTML.toHTMLFormattedString();
-      BOOST_MESSAGE( sResourceAPIDocumentAsHTMLFormattedString );
-      std::ofstream os( sLocationOfHTMLFile.c_str() );
-      os.write( sResourceAPIDocumentAsHTMLFormattedString.c_str() , sResourceAPIDocumentAsHTMLFormattedString.size() );
+      std::string sLocationOfFileContainingExpectedHTMLBody = C2STestRestFixture::sPathToTestSourcesDirectory + "/c2s_test_expected_html_body";
+      m_sHTMLStringExpectedForAPIDocumentBody = util::readFileToString( sLocationOfFileContainingExpectedHTMLBody );
+    }
+
+    void C2STestRestResourceAPIDocumentHTMLBody::checkHTMLStringCreatedFromAPIDocumentBody()
+    {
+      C2SRestResourceAPIDocumentHTMLBody resourceAPIDocumentHTMLBody( m_descriptionOfRestResource );
+      std::string sHTMLBodyCreatedForResourceDescription = resourceAPIDocumentHTMLBody.toHTMLFormattedString();
+      BOOST_MESSAGE( sHTMLBodyCreatedForResourceDescription );
+      BOOST_CHECK( sHTMLBodyCreatedForResourceDescription == m_sHTMLStringExpectedForAPIDocumentBody );
     }
 
   }

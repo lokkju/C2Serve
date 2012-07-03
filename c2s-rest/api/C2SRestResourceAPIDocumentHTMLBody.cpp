@@ -29,42 +29,40 @@
 
  */
 
-#ifndef C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
-#define C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
-
+#include "C2SRestResourceAPIDocumentHTMLBody.h"
+#include "C2SRestResourceAPIDocumentHTML.h"
 #include "C2SRestResourceDescription.h"
-#include <string>
+
+#include "StringUtils.h"
 
 namespace c2s
 {
 
-  namespace test
+  C2SRestResourceAPIDocumentHTMLBody::C2SRestResourceAPIDocumentHTMLBody( const C2SRestResourceDescription &descriptionOfRestResourceToCreateAPIDocumentFor )
+    : m_descriptionOfRestResourceToCreateAPIDocumentFor( descriptionOfRestResourceToCreateAPIDocumentFor )
   {
+  }
 
-    class C2STestRestResourceAPIDocumentHTML
-    {
-    public:
+  C2SRestResourceAPIDocumentHTMLBody::~C2SRestResourceAPIDocumentHTMLBody()
+  {
+  }
 
-      static void runTest();
+  std::string C2SRestResourceAPIDocumentHTMLBody::toHTMLFormattedString() const
+  {
+    std::string sIndentWithSpaces = util::createIndentWithSpaces( C2SRestResourceAPIDocumentHTML::iIndentInSpaces );
+    std::string sHTMLBodyAsString = sIndentWithSpaces + "<body>\n\n";
+    sHTMLBodyAsString += sIndentWithSpaces + sIndentWithSpaces + "<div>\n\n";
+    sHTMLBodyAsString += this->createHTMLFormattedStringForResourceOverviewWithIndentAsSpaces( 3 * C2SRestResourceAPIDocumentHTML::iIndentInSpaces );
+    sHTMLBodyAsString += sIndentWithSpaces + sIndentWithSpaces + "</div>\n\n";
+    sHTMLBodyAsString += sIndentWithSpaces + "</body>";
+    return sHTMLBodyAsString;
+  }
 
-    private:
-
-      C2STestRestResourceAPIDocumentHTML();
-
-      virtual ~C2STestRestResourceAPIDocumentHTML();
-
-      void writeDescriptionOfRestResourceToHTMLFile( const std::string &sLocationOfHTMLFile ) const;
-
-      static const std::string sHostName;
-
-      static const std::string sLocationToWriteResourceAPIDocumentHTML;
-
-      C2SRestResourceDescription m_descriptionOfRestResource;
-
-    };
-
+  std::string C2SRestResourceAPIDocumentHTMLBody::createHTMLFormattedStringForResourceOverviewWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
+  {
+    std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
+    std::string sResourceOverviewAsHTMLFormattedString = sIndent + "<h1>Overview for Resource " + m_descriptionOfRestResourceToCreateAPIDocumentFor.sContextRoot + "<h1>\n\n";
+    return sResourceOverviewAsHTMLFormattedString;
   }
 
 }
-
-#endif /* C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_ */

@@ -29,42 +29,33 @@
 
  */
 
-#ifndef C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
-#define C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
+#ifndef C2SRESTRESOURCEAPIDOCUMENTHTMLBODY_H_
+#define C2SRESTRESOURCEAPIDOCUMENTHTMLBODY_H_
 
-#include "C2SRestResourceDescription.h"
 #include <string>
 
 namespace c2s
 {
+  class C2SRestResourceDescription;
 
-  namespace test
+  class C2SRestResourceAPIDocumentHTMLBody
   {
+  public:
 
-    class C2STestRestResourceAPIDocumentHTML
-    {
-    public:
+    C2SRestResourceAPIDocumentHTMLBody( const C2SRestResourceDescription &descriptionOfRestResourceToCreateAPIDocumentFor );
 
-      static void runTest();
+    virtual ~C2SRestResourceAPIDocumentHTMLBody();
 
-    private:
+    std::string toHTMLFormattedString() const;
 
-      C2STestRestResourceAPIDocumentHTML();
+  private:
 
-      virtual ~C2STestRestResourceAPIDocumentHTML();
+    std::string createHTMLFormattedStringForResourceOverviewWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
 
-      void writeDescriptionOfRestResourceToHTMLFile( const std::string &sLocationOfHTMLFile ) const;
+    const C2SRestResourceDescription &m_descriptionOfRestResourceToCreateAPIDocumentFor;
 
-      static const std::string sHostName;
-
-      static const std::string sLocationToWriteResourceAPIDocumentHTML;
-
-      C2SRestResourceDescription m_descriptionOfRestResource;
-
-    };
-
-  }
+  };
 
 }
 
-#endif /* C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_ */
+#endif /* C2SRESTRESOURCEAPIDOCUMENTHTMLBODY_H_ */
