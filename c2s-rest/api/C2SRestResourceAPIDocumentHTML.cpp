@@ -30,6 +30,7 @@
  */
 
 #include "C2SRestResourceAPIDocumentHTML.h"
+#include "C2SRestResourceAPIDocumentHTMLBody.h"
 #include "C2SRestResourceAPIDocumentHTMLHeader.h"
 #include "C2SRestResourceDescription.h"
 
@@ -40,14 +41,16 @@ namespace c2s
   C2SRestResourceAPIDocumentHTML::C2SRestResourceAPIDocumentHTML( const std::string sHostURL , const C2SRestResourceDescription &resourceDescriptionToCreateAPIDocumentFor )
     : m_sHostURL( sHostURL ),
       m_resourceDescriptionToCreateAPIDocumentFor( resourceDescriptionToCreateAPIDocumentFor ),
-      m_pAPIDocumentHTMLHeader( C2SRestResourceAPIDocumentHTMLHeader::createDefaultDescriptionHeader() )
+      m_pAPIDocumentHTMLHeader( C2SRestResourceAPIDocumentHTMLHeader::createDefaultDescriptionHeader() ),
+      m_pAPIDocumentHTMLBody( new C2SRestResourceAPIDocumentHTMLBody( resourceDescriptionToCreateAPIDocumentFor ) )
   {
   }
 
   C2SRestResourceAPIDocumentHTML::C2SRestResourceAPIDocumentHTML( const C2SRestResourceDescription &resourceDescriptionToCreateAPIDocumentFor )
     : m_sHostURL( "localhost" ),
       m_resourceDescriptionToCreateAPIDocumentFor( resourceDescriptionToCreateAPIDocumentFor ),
-      m_pAPIDocumentHTMLHeader( C2SRestResourceAPIDocumentHTMLHeader::createDefaultDescriptionHeader() )
+      m_pAPIDocumentHTMLHeader( C2SRestResourceAPIDocumentHTMLHeader::createDefaultDescriptionHeader() ),
+      m_pAPIDocumentHTMLBody( new C2SRestResourceAPIDocumentHTMLBody( resourceDescriptionToCreateAPIDocumentFor ) )
   {
 
   }
@@ -55,6 +58,7 @@ namespace c2s
   C2SRestResourceAPIDocumentHTML::~C2SRestResourceAPIDocumentHTML()
   {
     delete m_pAPIDocumentHTMLHeader;
+    delete m_pAPIDocumentHTMLBody;
   }
 
   std::string C2SRestResourceAPIDocumentHTML::toHTMLFormattedString() const
@@ -62,6 +66,7 @@ namespace c2s
     std::string sAPIDocumentAsHTMLFormattedString = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n";
     sAPIDocumentAsHTMLFormattedString += "<html>\n\n";
     sAPIDocumentAsHTMLFormattedString += m_pAPIDocumentHTMLHeader->toHTMLFormattedString() + "\n\n";
+    sAPIDocumentAsHTMLFormattedString += m_pAPIDocumentHTMLBody->toHTMLFormattedString() + "\n\n";
     sAPIDocumentAsHTMLFormattedString += "</html>\n";
     return sAPIDocumentAsHTMLFormattedString;
   }

@@ -40,6 +40,7 @@
 namespace c2s
 {
   struct C2SRestResourceDescription;
+  class C2SRestResourceAPIDocumentHTMLBody;
   class C2SRestResourceAPIDocumentHTMLHeader;
 
   class C2SRestResourceAPIDocumentHTML
@@ -69,6 +70,8 @@ namespace c2s
     const C2SRestResourceDescription &m_resourceDescriptionToCreateAPIDocumentFor;
 
     C2SRestResourceAPIDocumentHTMLHeader *m_pAPIDocumentHTMLHeader;
+
+    C2SRestResourceAPIDocumentHTMLBody *m_pAPIDocumentHTMLBody;
 
   };
 
