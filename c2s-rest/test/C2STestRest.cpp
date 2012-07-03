@@ -49,7 +49,7 @@ test_suite *init_unit_test_suite( int , char ** const )
   initialization->add( BOOST_TEST_CASE( &c2s::test::C2STestRestServerInitialization::runTest ) );
   framework::master_test_suite().add( initialization );
 
-  test_suite* api_document = BOOST_TEST_SUITE( "api_document" );
+  test_suite* api_document = BOOST_TEST_SUITE( "api_documentation" );
   api_document->add( BOOST_TEST_CASE( &c2s::test::C2STestRestResourceAPIDocumentHTML::runTest ) );
   framework::master_test_suite().add( api_document );
 

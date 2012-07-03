@@ -32,11 +32,11 @@
 #ifndef C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
 #define C2STESTRESTRESOURCEAPIDOCUMENTHTML_H_
 
+#include "C2SRestResourceDescription.h"
 #include <string>
 
 namespace c2s
 {
-  class C2SRestResourceAPIDocumentHTML;
 
   namespace test
   {
@@ -58,7 +58,7 @@ namespace c2s
       static const std::string sHostName;
       static const std::string sContextRootOfTestResource;
 
-      C2SRestResourceAPIDocumentHTML *m_pRestResourceDescription;
+      C2SRestResourceDescription m_descriptionOfRestResource;
 
     };
 

@@ -49,8 +49,9 @@ namespace c2s
 
   C2SRestResourcePrototype::C2SRestResourcePrototype( const std::string &sHostName , const std::string &sContextRoot )
     : C2SHttpResourcePrototype( sContextRoot ),
-      m_resourceDescription( sHostName , sContextRoot )
+      m_resourceDescription( sContextRoot )
   {
+    m_pResourceAPIDocument = new C2SRestResourceAPIDocumentHTML( sHostName , m_resourceDescription );
   }
 
   C2SRestResourcePrototype::C2SRestResourcePrototype( const C2SRestResourcePrototype &r )
@@ -67,6 +68,8 @@ namespace c2s
 
       m_registeredMethodPrototypes.push_back( pClone );
     }
+
+    m_pResourceAPIDocument = new C2SRestResourceAPIDocumentHTML( m_resourceDescription );
   };
 
   C2SRestResourcePrototype::~C2SRestResourcePrototype()
@@ -74,6 +77,7 @@ namespace c2s
     C2SRestMethodPrototypeList::iterator mit = m_registeredMethodPrototypes.begin();
     for ( ; mit != m_registeredMethodPrototypes.end(); ++mit )
       delete ( *mit );
+    delete m_pResourceAPIDocument;
   }
 
   C2SRestResourcePrototype *C2SRestResourcePrototype::createRestResourceWithContextRoot( const std::string &sContextRootOfRestResource )
@@ -121,7 +125,7 @@ namespace c2s
     if ( request.header().Method != C2S_GET )
       throw C2SRestException( "C2SRestResourcePrototype::processRequest: " , "Access to context root of RESTful resource only allowed as GET request" , MethodNotAllowed );
 
-    C2SHttpResponse response = m_resourceDescription.process( request );
+    C2SHttpResponse response = m_pResourceAPIDocument->process( request );
     m_pResponseHandler->sendResponse( response );
   }
 

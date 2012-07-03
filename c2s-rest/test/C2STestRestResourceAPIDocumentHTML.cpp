@@ -43,13 +43,13 @@ namespace c2s
     const std::string C2STestRestResourceAPIDocumentHTML::sContextRootOfTestResource = "c2serve/description";
 
     C2STestRestResourceAPIDocumentHTML::C2STestRestResourceAPIDocumentHTML()
+      : m_descriptionOfRestResource( C2STestRestResourceAPIDocumentHTML::sContextRootOfTestResource )
     {
       this->createRestResourceDescriptionForTest();
     }
 
     C2STestRestResourceAPIDocumentHTML::~C2STestRestResourceAPIDocumentHTML()
     {
-      delete m_pRestResourceDescription;
     }
 
     void C2STestRestResourceAPIDocumentHTML::runTest()
@@ -60,7 +60,6 @@ namespace c2s
 
     void C2STestRestResourceAPIDocumentHTML::createRestResourceDescriptionForTest()
     {
-      m_pRestResourceDescription = new C2SRestResourceAPIDocumentHTML( sHostName , sContextRootOfTestResource );
     }
 
   }

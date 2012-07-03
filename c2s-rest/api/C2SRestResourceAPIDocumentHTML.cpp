@@ -30,15 +30,23 @@
  */
 
 #include "C2SRestResourceAPIDocumentHTML.h"
+#include "C2SRestResourceDescription.h"
 
 namespace c2s
 {
   const unsigned int C2SRestResourceAPIDocumentHTML::iIndentInSpaces = 2;
 
-  C2SRestResourceAPIDocumentHTML::C2SRestResourceAPIDocumentHTML( const std::string sHostURL , const std::string &sContextRoot )
+  C2SRestResourceAPIDocumentHTML::C2SRestResourceAPIDocumentHTML( const std::string sHostURL , const C2SRestResourceDescription &resourceDescriptionToCreateAPIDocumentFor )
     : m_sHostURL( sHostURL ),
-      m_sContextRoot( sContextRoot )
+      m_resourceDescriptionToCreateAPIDocumentFor( resourceDescriptionToCreateAPIDocumentFor )
   {
+  }
+
+  C2SRestResourceAPIDocumentHTML::C2SRestResourceAPIDocumentHTML( const C2SRestResourceDescription &resourceDescriptionToCreateAPIDocumentFor )
+    : m_sHostURL( "localhost" ),
+      m_resourceDescriptionToCreateAPIDocumentFor( resourceDescriptionToCreateAPIDocumentFor )
+  {
+
   }
 
   C2SRestResourceAPIDocumentHTML::~C2SRestResourceAPIDocumentHTML()
@@ -81,7 +89,7 @@ namespace c2s
 
     sBody += "<body>";
 
-    sBody += "http://" + m_sHostURL + ":" + "PORT" + "/" + m_sContextRoot;
+    sBody += "http://" + m_sHostURL + ":" + "PORT" + "/" + m_resourceDescriptionToCreateAPIDocumentFor.sContextRoot;
 
     sBody += "</body>";
 
