@@ -1,6 +1,6 @@
 /**
 
-	Copyright (c) 2011, C2Serve (http://www.c2serve.eu)
+	Copyright (c) 2012, C2Serve (http://www.c2serve.eu)
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -29,52 +29,29 @@
 
  */
 
-#ifndef C2SRESTRESOURCEAPIDOCUMENTHTML_H_
-#define C2SRESTRESOURCEAPIDOCUMENTHTML_H_
 
-#include "C2SHttpResponse.h"
-#include "C2SHttpRequest.h"
+#ifndef C2SRESTPATHSEGMENTDESCRIPTION_H_
+#define C2SRESTPATHSEGMENTDESCRIPTION_H_
 
 #include <string>
 
 namespace c2s
 {
-  class C2SRestResourceDescription;
-  class C2SRestResourceAPIDocumentHTMLBody;
-  class C2SRestResourceAPIDocumentHTMLHeader;
 
-  class C2SRestResourceAPIDocumentHTML
+  class C2SRestPathSegmentDescription
   {
   public:
 
-    C2SRestResourceAPIDocumentHTML( const std::string sHostURL , const C2SRestResourceDescription &resourceDescriptionToCreateAPIDocumentFor );
+    C2SRestPathSegmentDescription( const std::string &sSegmentID )
+      : sSegmentID( sSegmentID )
+    {};
 
-    C2SRestResourceAPIDocumentHTML( const C2SRestResourceDescription &resourceDescriptionToCreateAPIDocumentFor );
+    virtual ~C2SRestPathSegmentDescription(){};
 
-    virtual ~C2SRestResourceAPIDocumentHTML();
-
-    std::string toHTMLFormattedString() const;
-
-    C2SHttpResponse process( const C2SHttpRequest &request );
-
-    static const unsigned int iIndentInSpaces;
-
-  private:
-
-    std::string createHtmlHeader();
-
-    std::string createHtmlBody();
-
-    std::string m_sHostURL;
-
-    const C2SRestResourceDescription &m_resourceDescriptionToCreateAPIDocumentFor;
-
-    C2SRestResourceAPIDocumentHTMLHeader *m_pAPIDocumentHTMLHeader;
-
-    C2SRestResourceAPIDocumentHTMLBody *m_pAPIDocumentHTMLBody;
+    std::string sSegmentID;
 
   };
 
 }
 
-#endif /* C2SRESTRESOURCEAPIDOCUMENTHTML_H_ */
+#endif /* C2SRESTPATHSEGMENTDESCRIPTION_H_ */

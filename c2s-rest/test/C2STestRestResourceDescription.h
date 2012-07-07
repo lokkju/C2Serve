@@ -52,6 +52,9 @@ namespace c2s
 
       virtual ~C2STestRestResourceDescription();
 
+      static C2SRestMethodDescription createRestMethodDescription_1();
+      static C2SRestMethodDescription createRestMethodDescription_2();
+
       static const std::string sContextRootOfTestResource;
 
     };

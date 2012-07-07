@@ -29,50 +29,34 @@
 
  */
 
-#include "C2SRestResourceAPIDocumentCreateDefaultStyles.h"
+#ifndef C2SRESTRESOURCEAPIDOCUMENTHTMLMETHODOVERVIEW_H_
+#define C2SRESTRESOURCEAPIDOCUMENTHTMLMETHODOVERVIEW_H_
+
+#include <string>
 
 namespace c2s
 {
+  class C2SRestResourceDescription;
+  class C2SRestMethodDescription;
 
-  C2SRestResourceAPIDocumentCreateDefaultStyles::C2SRestResourceAPIDocumentCreateDefaultStyles()
+  class C2SRestResourceAPIDocumentHTMLMethodOverview
   {
-  }
+  public:
 
-  C2SRestResourceAPIDocumentCreateDefaultStyles::~C2SRestResourceAPIDocumentCreateDefaultStyles()
-  {
-  }
+    C2SRestResourceAPIDocumentHTMLMethodOverview( const C2SRestResourceDescription &restResourceDescription );
 
-  C2SRestResourceAPIDocumentStylesList C2SRestResourceAPIDocumentCreateDefaultStyles::createDefaultStyles()
-  {
-    C2SRestResourceAPIDocumentCreateDefaultStyles createDefaultStyles;
-    createDefaultStyles.createStyles();
-    return createDefaultStyles.m_defaultListOfCSSStylesForResourceDescription;
-  }
+    virtual ~C2SRestResourceAPIDocumentHTMLMethodOverview();
 
-  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStyles()
-  {
-    this->createStylesForBody();
-    this->createStylesForDiv();
-  }
+    std::string toHTMLFormattedStringWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
 
-  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStylesForBody()
-  {
-    C2SRestResourceAPIDocumentStylesClass stylesClass( "body" );
-    stylesClass.addStyle( "background-color" , "#eee" );
-    stylesClass.addStyle( "text-align" , "center" );
-    stylesClass.addStyle( "margin" , "0px auto" );
-    stylesClass.addStyle( "color" , "#2D313D" );
-    stylesClass.addStyle( "font-family" , "\"Gill Sans\", \"Trebuchet MS\", \"DejaVu Sans\"" );
-    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
-  }
+  private:
 
-  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStylesForDiv()
-  {
-    C2SRestResourceAPIDocumentStylesClass stylesClass( "div" );
-    stylesClass.addStyle( "width" , "1000px" );
-    stylesClass.addStyle( "text-align" , "justify" );
-    stylesClass.addStyle( "margin" , "0px auto" );
-    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
-  }
+    std::string createURIStringForRestMethod( const C2SRestMethodDescription &restMethodDescription ) const;
+
+    const C2SRestResourceDescription &m_restResourceDescription;
+
+  };
 
 }
+
+#endif /* C2SRESTRESOURCEAPIDOCUMENTHTMLMETHODOVERVIEW_H_ */

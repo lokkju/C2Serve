@@ -38,6 +38,8 @@ namespace c2s
 {
   class C2SRestResourceDescription;
 
+  class C2SRestResourceAPIDocumentHTMLMethodOverview;
+
   class C2SRestResourceAPIDocumentHTMLBody
   {
   public:
@@ -53,6 +55,8 @@ namespace c2s
     std::string createHTMLFormattedStringForResourceOverviewWithIndentAsSpaces( unsigned int iIndentInSpaces ) const;
 
     const C2SRestResourceDescription &m_descriptionOfRestResourceToCreateAPIDocumentFor;
+
+    C2SRestResourceAPIDocumentHTMLMethodOverview *m_pHTMLRestMethodOverview;
 
   };
 

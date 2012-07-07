@@ -31,6 +31,7 @@
 
 #include "C2SRestResourceAPIDocumentHTMLBody.h"
 #include "C2SRestResourceAPIDocumentHTML.h"
+#include "C2SRestResourceAPIDocumentHTMLMethodOverview.h"
 #include "C2SRestResourceDescription.h"
 
 #include "StringUtils.h"
@@ -41,10 +42,12 @@ namespace c2s
   C2SRestResourceAPIDocumentHTMLBody::C2SRestResourceAPIDocumentHTMLBody( const C2SRestResourceDescription &descriptionOfRestResourceToCreateAPIDocumentFor )
     : m_descriptionOfRestResourceToCreateAPIDocumentFor( descriptionOfRestResourceToCreateAPIDocumentFor )
   {
+    m_pHTMLRestMethodOverview = new C2SRestResourceAPIDocumentHTMLMethodOverview( m_descriptionOfRestResourceToCreateAPIDocumentFor );
   }
 
   C2SRestResourceAPIDocumentHTMLBody::~C2SRestResourceAPIDocumentHTMLBody()
   {
+    delete m_pHTMLRestMethodOverview;
   }
 
   std::string C2SRestResourceAPIDocumentHTMLBody::toHTMLFormattedString() const
@@ -62,6 +65,7 @@ namespace c2s
   {
     std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
     std::string sResourceOverviewAsHTMLFormattedString = sIndent + "<h1>Overview for Resource " + m_descriptionOfRestResourceToCreateAPIDocumentFor.sContextRoot + "</h1>\n\n";
+    sResourceOverviewAsHTMLFormattedString += m_pHTMLRestMethodOverview->toHTMLFormattedStringWithIndentAsSpaces( iIndentInSpaces ) + "\n";
     return sResourceOverviewAsHTMLFormattedString;
   }
 

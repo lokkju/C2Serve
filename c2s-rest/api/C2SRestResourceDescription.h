@@ -33,19 +33,37 @@
 #ifndef C2SRESTRESOURCEDESCRIPTION_H_
 #define C2SRESTRESOURCEDESCRIPTION_H_
 
+#include "C2SRestMethodDescription.h"
+
 #include <string>
+#include <list>
 
 namespace c2s
 {
 
-  struct C2SRestResourceDescription
+  class C2SRestResourceDescription
   {
+  public:
+
+    typedef std::list<C2SRestMethodDescription>::const_iterator const_iterator;
 
     explicit C2SRestResourceDescription( const std::string &sContextRoot )
       : sContextRoot( sContextRoot )
     {};
 
     std::string sContextRoot;
+
+    void addDescriptionForRestMethod( const C2SRestMethodDescription &restMethodDescription )
+    {
+      m_listOfRestMethodDescriptions.push_back( restMethodDescription );
+    }
+
+    const_iterator begin() const { return m_listOfRestMethodDescriptions.begin(); }
+    const_iterator end() const { return m_listOfRestMethodDescriptions.end(); }
+
+  private:
+
+    std::list<C2SRestMethodDescription> m_listOfRestMethodDescriptions;
 
   };
 

@@ -48,7 +48,26 @@ namespace c2s
 
     C2SRestResourceDescription C2STestRestResourceDescription::createRestResourceDescription()
     {
-      return C2SRestResourceDescription( C2STestRestResourceDescription::sContextRootOfTestResource );
+      C2SRestResourceDescription restResourceDescription( C2STestRestResourceDescription::sContextRootOfTestResource );
+      restResourceDescription.addDescriptionForRestMethod( C2STestRestResourceDescription::createRestMethodDescription_1() );
+      restResourceDescription.addDescriptionForRestMethod( C2STestRestResourceDescription::createRestMethodDescription_2() );
+      return restResourceDescription;
+    }
+
+    C2SRestMethodDescription C2STestRestResourceDescription::createRestMethodDescription_1()
+    {
+      C2SRestMethodDescription restMethodDescription;
+      restMethodDescription.addDescriptionForPathSegment( C2SRestPathSegmentDescription( "foo" ) );
+      restMethodDescription.addDescriptionForPathSegment( C2SRestPathSegmentDescription( "bar" ) );
+      return restMethodDescription;
+    }
+
+    C2SRestMethodDescription C2STestRestResourceDescription::createRestMethodDescription_2()
+    {
+      C2SRestMethodDescription restMethodDescription;
+      restMethodDescription.addDescriptionForPathSegment( C2SRestPathSegmentDescription( "bar" ) );
+      restMethodDescription.addDescriptionForPathSegment( C2SRestPathSegmentDescription( "foo" ) );
+      return restMethodDescription;
     }
 
   }
