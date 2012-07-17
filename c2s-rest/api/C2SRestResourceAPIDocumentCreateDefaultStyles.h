@@ -51,6 +51,7 @@ namespace c2s
 
     void createStyles();
     void createStylesForBody();
+    void createStylesForDiv();
 
     C2SRestResourceAPIDocumentStylesList m_defaultListOfCSSStylesForResourceDescription;
 

@@ -16,12 +16,14 @@ add_library( c2s_rest
   C2SRestMethodPrototype
   C2SRestResourcePrototype
   C2SRestMatchMethodToRequest
+  api/C2SRestMethodDescription
   api/C2SRestResourceAPIDocumentHTML
   api/C2SRestResourceAPIDocumentHTMLBody
   api/C2SRestResourceAPIDocumentHTMLHeader
   api/C2SRestResourceAPIDocumentStylesList
   api/C2SRestResourceAPIDocumentStylesClass
   api/C2SRestResourceAPIDocumentCreateDefaultStyles
+  api/C2SRestResourceAPIDocumentHTMLMethodOverview
 )
 
 install( TARGETS c2s_rest DESTINATION lib )

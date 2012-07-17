@@ -61,7 +61,7 @@ if ( Boost_FOUND )
   )
   
   if ( NOT DISABLE_C2S_TESTING )
-    add_test( c2s_test_rest c2s_test_rest )
+    add_test( NAME c2s_test_rest WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin COMMAND c2s_test_rest )
   endif ( NOT DISABLE_C2S_TESTING )
   
 endif ( Boost_FOUND )

@@ -29,50 +29,22 @@
 
  */
 
-#include "C2SRestResourceAPIDocumentCreateDefaultStyles.h"
+#include "C2SRestMethodDescription.h"
 
 namespace c2s
 {
 
-  C2SRestResourceAPIDocumentCreateDefaultStyles::C2SRestResourceAPIDocumentCreateDefaultStyles()
+  C2SRestMethodDescription::C2SRestMethodDescription()
   {
   }
 
-  C2SRestResourceAPIDocumentCreateDefaultStyles::~C2SRestResourceAPIDocumentCreateDefaultStyles()
+  C2SRestMethodDescription::~C2SRestMethodDescription()
   {
   }
 
-  C2SRestResourceAPIDocumentStylesList C2SRestResourceAPIDocumentCreateDefaultStyles::createDefaultStyles()
+  void C2SRestMethodDescription::addDescriptionForPathSegment( const C2SRestPathSegmentDescription &descriptionForPathSegment )
   {
-    C2SRestResourceAPIDocumentCreateDefaultStyles createDefaultStyles;
-    createDefaultStyles.createStyles();
-    return createDefaultStyles.m_defaultListOfCSSStylesForResourceDescription;
-  }
-
-  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStyles()
-  {
-    this->createStylesForBody();
-    this->createStylesForDiv();
-  }
-
-  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStylesForBody()
-  {
-    C2SRestResourceAPIDocumentStylesClass stylesClass( "body" );
-    stylesClass.addStyle( "background-color" , "#eee" );
-    stylesClass.addStyle( "text-align" , "center" );
-    stylesClass.addStyle( "margin" , "0px auto" );
-    stylesClass.addStyle( "color" , "#2D313D" );
-    stylesClass.addStyle( "font-family" , "\"Gill Sans\", \"Trebuchet MS\", \"DejaVu Sans\"" );
-    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
-  }
-
-  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStylesForDiv()
-  {
-    C2SRestResourceAPIDocumentStylesClass stylesClass( "div" );
-    stylesClass.addStyle( "width" , "1000px" );
-    stylesClass.addStyle( "text-align" , "justify" );
-    stylesClass.addStyle( "margin" , "0px auto" );
-    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
+    m_listOfPathSegmentsForRestMethod.push_back( descriptionForPathSegment );
   }
 
 }
