@@ -174,17 +174,19 @@
           <br />
           &nbsp;&nbsp;<i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i> *<i class="fd">process</i>()<br />
           &nbsp;&nbsp;{<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> sGreetings = <i class="m">&quot;Hello&quot;</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_pLogger</i>-&gt;info( sGreetings );<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_pLogger</i>-&gt;info( <i class="m">m_sResponseEntity</i> );<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i>::build( <i class="tn">c2s</i>::<i class="m">OK</i> );<br />
           &nbsp;&nbsp;}<br />
           <br />
           <i class="sw">private:</i> <br />
           <br />
           &nbsp;&nbsp;<i class="tn">c2s</i>::<i class="tn">io</i>::<i class="tn">DateTimeLogger</i> *<i class="m">m_pLogger</i>; <br />
+          <br />
+          &nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> <i class="m">m_sResponseEntity</i>; <br />
           <br />
           &nbsp;&nbsp;&nbsp;&nbsp;...<br />
           <br />
@@ -270,12 +272,12 @@
           <br />
           &nbsp;&nbsp;<i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i> *<i class="fd">process</i>()<br />
           &nbsp;&nbsp;{<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> sGreetings = <i class="m">&quot;Hello&quot;</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_pLogger</i>-&gt;info( sGreetings );<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET</i>&lt;<i class="tn">std</i>::<i class="tn">string</i>&gt;::buildResponse( <i class="tn">c2s</i>::<i class="m">OK</i> , sGreetings );<br />          
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_pLogger</i>-&gt;info( <i class="m">m_sResponseEntity</i> );<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET</i>&lt;<i class="tn">std</i>::<i class="tn">string</i>&gt;::buildResponse( <i class="tn">c2s</i>::<i class="m">OK</i> , <i class="m">m_sResponseEntity</i> );<br />          
           &nbsp;&nbsp;}<br />
           <br />
           <i class="sw">private:</i> <br />
@@ -310,9 +312,9 @@
           {<br />
           &nbsp;&nbsp;<i class="sw">using namespace</i> c2s;<br />
           &nbsp;&nbsp;<i class="tn">C2SSettings</i> &settingsOfServer;<br />
-          &nbsp;&nbsp;settingsOfServer.<i class="m">iPort</i> = 3344;<br />
+          &nbsp;&nbsp;settingsOfServer.<i class="m">iPort</i> = 3456;<br />
           &nbsp;&nbsp;<i class="tn">C2SHttpServer</i> httpServer( settingsOfServer );<br />
-          &nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> sContextRoot = <i class="m">&quot;example/resource&quot;</i>;<br />
+          &nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> sContextRoot = <i class="m">&quot;c2s-example&quot;</i>;<br />
           &nbsp;&nbsp;<i class="tn">C2SRestResourcePrototype</i> *pResource =<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="tn">C2SRestResourcePrototype</i>::createRestResourceWithContextRoot( sContextRoot );<br />
           &nbsp;&nbsp;pResource->registerMethodPrototype( <i class="sw">new</i> <i class="tn">SayHelloMethod()</i> );<br />
@@ -326,7 +328,7 @@
 		  
 		  <div class="code">
 		    <code>
-  		    curl -X GET http://localhost:3344/example/resource/say-hello/to/Richard?from=C2Serve
+  		    curl -X GET http://localhost:3456/c2s-example/say-hello/to/Richard?from=C2Serve
   		  </code>
 		  </div>
 		  
