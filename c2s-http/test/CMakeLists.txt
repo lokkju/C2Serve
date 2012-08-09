@@ -27,8 +27,8 @@ if ( Boost_FOUND )
   	c2s_test_http_basic
   	DESTINATION bin )
   
-  if ( NOT DISABLE_C2S_TESTING )
+  if ( NOT C2Serve_DISABLE_TESTING )
     add_test( c2s_test_http_basic c2s_test_http_basic )
-  endif ( NOT DISABLE_C2S_TESTING )
+  endif ( NOT C2Serve_DISABLE_TESTING )
   
 endif ( Boost_FOUND )
