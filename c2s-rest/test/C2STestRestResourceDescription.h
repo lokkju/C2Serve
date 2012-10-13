@@ -56,6 +56,7 @@ namespace c2s
       static C2SRestMethodDescription createRestMethodDescription_2();
 
       static const std::string sContextRootOfTestResource;
+      static const std::string sBriefDescriptionOfTestResource;
 
     };
 

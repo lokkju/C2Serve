@@ -37,6 +37,7 @@ namespace c2s
   namespace test
   {
     const std::string C2STestRestResourceDescription::sContextRootOfTestResource = "c2serve/description";
+    const std::string C2STestRestResourceDescription::sBriefDescriptionOfTestResource = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate.";
 
     C2STestRestResourceDescription::C2STestRestResourceDescription()
     {
@@ -48,7 +49,7 @@ namespace c2s
 
     C2SRestResourceDescription C2STestRestResourceDescription::createRestResourceDescription()
     {
-      C2SRestResourceDescription restResourceDescription( C2STestRestResourceDescription::sContextRootOfTestResource );
+      C2SRestResourceDescription restResourceDescription( C2STestRestResourceDescription::sContextRootOfTestResource , C2STestRestResourceDescription::sBriefDescriptionOfTestResource );
       restResourceDescription.addDescriptionForRestMethod( C2STestRestResourceDescription::createRestMethodDescription_1() );
       restResourceDescription.addDescriptionForRestMethod( C2STestRestResourceDescription::createRestMethodDescription_2() );
       return restResourceDescription;

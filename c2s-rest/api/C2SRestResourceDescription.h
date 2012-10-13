@@ -47,11 +47,17 @@ namespace c2s
 
     typedef std::list<C2SRestMethodDescription>::const_iterator const_iterator;
 
+    explicit C2SRestResourceDescription( const std::string &sContextRoot , const std::string &sBriefDescription )
+      : sContextRoot( sContextRoot ),
+        sBriefDescription( sBriefDescription )
+    {};
+
     explicit C2SRestResourceDescription( const std::string &sContextRoot )
       : sContextRoot( sContextRoot )
     {};
 
     std::string sContextRoot;
+    std::string sBriefDescription;
 
     void addDescriptionForRestMethod( const C2SRestMethodDescription &restMethodDescription )
     {

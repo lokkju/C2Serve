@@ -2,12 +2,22 @@
 
     <div>
 
-      <h1>Overview for Resource c2serve/description</h1>
+      <h1>Resource API Documentation</h1>
 
-      <ul>
-        <li>/foo/bar/</li>
-        <li>/bar/foo/</li>
-      </ul>
+      <div>
+
+            <p><b>URL:</b> c2serve/description</p>
+
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate.
+
+            <h2>Method Overview</h2>
+
+            <ul>
+              <li>/foo/bar/</li>
+              <li>/bar/foo/</li>
+            </ul>
+
+      </div>
 
     </div>
 

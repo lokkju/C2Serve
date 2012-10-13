@@ -51,7 +51,8 @@ namespace c2s
   {
     std::string sIndentWithSpaces = util::createIndentWithSpaces( iIndentInSpaces );
     std::string sIndentWithSpacesForMethodURIs = util::createIndentWithSpaces( iIndentInSpaces + C2SRestResourceAPIDocumentHTML::iIndentInSpaces );
-    std::string sMethodOverviewAsHTMLFormattedString = sIndentWithSpaces + "<ul>\n";
+    std::string sMethodOverviewAsHTMLFormattedString = sIndentWithSpaces + "<h2>Method Overview</h2>\n\n";
+    sMethodOverviewAsHTMLFormattedString += sIndentWithSpaces + "<ul>\n";
     C2SRestResourceDescription::const_iterator restMethodIt = m_restResourceDescription.begin();
     C2SRestResourceDescription::const_iterator restMethodEnd = m_restResourceDescription.end();
     for ( ; restMethodIt != restMethodEnd; ++restMethodIt )

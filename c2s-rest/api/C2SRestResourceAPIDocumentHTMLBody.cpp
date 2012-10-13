@@ -64,8 +64,12 @@ namespace c2s
   std::string C2SRestResourceAPIDocumentHTMLBody::createHTMLFormattedStringForResourceOverviewWithIndentAsSpaces( unsigned int iIndentInSpaces ) const
   {
     std::string sIndent = util::createIndentWithSpaces( iIndentInSpaces );
-    std::string sResourceOverviewAsHTMLFormattedString = sIndent + "<h1>Overview for Resource " + m_descriptionOfRestResourceToCreateAPIDocumentFor.sContextRoot + "</h1>\n\n";
-    sResourceOverviewAsHTMLFormattedString += m_pHTMLRestMethodOverview->toHTMLFormattedStringWithIndentAsSpaces( iIndentInSpaces ) + "\n";
+    std::string sResourceOverviewAsHTMLFormattedString = sIndent + "<h1>Resource API Documentation</h1>\n\n";
+    sResourceOverviewAsHTMLFormattedString += sIndent + "<div>\n\n";
+    sResourceOverviewAsHTMLFormattedString += sIndent + sIndent + "<p><b>URL:</b> " + m_descriptionOfRestResourceToCreateAPIDocumentFor.sContextRoot + "</p>\n\n";
+    sResourceOverviewAsHTMLFormattedString += sIndent + sIndent + m_descriptionOfRestResourceToCreateAPIDocumentFor.sBriefDescription + "\n\n";
+    sResourceOverviewAsHTMLFormattedString += m_pHTMLRestMethodOverview->toHTMLFormattedStringWithIndentAsSpaces( iIndentInSpaces + iIndentInSpaces ) + "\n";
+    sResourceOverviewAsHTMLFormattedString += sIndent + "</div>\n\n";
     return sResourceOverviewAsHTMLFormattedString;
   }
 

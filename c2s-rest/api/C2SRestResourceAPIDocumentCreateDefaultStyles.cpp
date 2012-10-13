@@ -53,6 +53,9 @@ namespace c2s
   {
     this->createStylesForBody();
     this->createStylesForDiv();
+    this->createStylesForH1();
+    this->createStylesForH2();
+    this->createStylesForResourceBrief();
   }
 
   void C2SRestResourceAPIDocumentCreateDefaultStyles::createStylesForBody()
@@ -72,6 +75,28 @@ namespace c2s
     stylesClass.addStyle( "width" , "1000px" );
     stylesClass.addStyle( "text-align" , "justify" );
     stylesClass.addStyle( "margin" , "0px auto" );
+    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
+  }
+
+  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStylesForH1()
+  {
+    C2SRestResourceAPIDocumentStylesClass stylesClass( "h1" );
+    stylesClass.addStyle( "font-size" , "16pt" );
+    stylesClass.addStyle( "margin-top" , "40px" );
+    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
+  }
+
+  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStylesForH2()
+  {
+    C2SRestResourceAPIDocumentStylesClass stylesClass( "h2" );
+    stylesClass.addStyle( "font-size" , "14pt" );
+    m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
+  }
+
+  void C2SRestResourceAPIDocumentCreateDefaultStyles::createStylesForResourceBrief()
+  {
+    C2SRestResourceAPIDocumentStylesClass stylesClass( "div div" );
+    stylesClass.addStyle( "padding" , "0px 20px" );
     m_defaultListOfCSSStylesForResourceDescription.addStylesForCSSClass( stylesClass );
   }
 
