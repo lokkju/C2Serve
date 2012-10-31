@@ -176,23 +176,16 @@
           &nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_pLogger</i>-&gt;info( sGreetings );<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i>::build( <i class="tn">c2s</i>::<i class="m">OK</i> );<br />
           &nbsp;&nbsp;}<br />
-          <br />
-          <i class="sw">private:</i> <br />
-          <br />
-          &nbsp;&nbsp;<i class="tn">c2s</i>::<i class="tn">io</i>::<i class="tn">DateTimeLogger</i> *<i class="m">m_pLogger</i>; <br />
-          <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;...<br />
           <br />
           };<br />
           <br />
         </code>
       </div>
       
-      All we do is evaluating the path and query parameters, creating a message and logging this message.
-      However, the message is only logged to the server's logger, the client is unable to see this message.
+      We evaluate the path and query parameters and create the message.
+      However, the client is unable to see this message.
       What we need is a possibility to send data back to the client.
     
       <h2>Creating Data for Response Entity</h2>
@@ -272,13 +265,8 @@
           &nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_pLogger</i>-&gt;info( sGreetings );<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET</i>&lt;<i class="tn">std</i>::<i class="tn">string</i>&gt;::buildResponse( <i class="tn">c2s</i>::<i class="m">OK</i> , sGreetings );<br />          
           &nbsp;&nbsp;}<br />
-          <br />
-          <i class="sw">private:</i> <br />
-          <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;...<br />
           <br />
           };<br />
           <br />
