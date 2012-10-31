@@ -160,7 +160,7 @@ BOOST_AUTO_TEST_CASE( HttpRequestPOST2 )
   c2s::C2SHttpRequestHeader header;
 
   std::string sChunk1 = "\n\nPOST /c2s/test/http-parser/ HTTP/1.1\r\nAccept: text/html,";
-  std::string sChunk2 = "application/xhtml+xml;charset=UTF-8,application/xml;q=0.9,*/*;q=0.834\r\nContent-Length: 44\nContent-Type: application/x-www";
+  std::string sChunk2 = "application/xhtml+xml;charset=UTF-8,application/xml;q=0.9,*/*;q=0.834\r\nContent-length: 44\nContent-type: application/x-www";
   std::string sChunk3 = "-form-urlencoded\r";
   std::string sChunk4 = "\n\r\nThisIsMyContent\n\n\nThis is my content part II";
   parser.parse( sChunk1.c_str() , sChunk1.size() , &header );
@@ -320,6 +320,15 @@ BOOST_AUTO_TEST_CASE( URISkip )
   checkUriSkip( 10 , "//uri/sub/" , "/uri//sub" );
   checkUriSkip( 11 , "//uri/sub//subsub///" , "/uri//sub" );
   checkUriSkip( -1 , "//uri/sub/" , "/uri//sub///subsub///" );
+}
+
+BOOST_AUTO_TEST_CASE( CompareLowerCase )
+{
+  using namespace c2s::util;
+  BOOST_CHECK( isEqualCaseInsensitive( "Content-Type" , "content-type" ) == true );
+  BOOST_CHECK( isEqualCaseInsensitive( "content-type" , "Content-Type" ) == true );
+  BOOST_CHECK( isEqualCaseInsensitive( "ContentType" , "Content-Type" ) == false );
+  BOOST_CHECK( isEqualCaseInsensitive( "Content+Type" , "Content-Type" ) == false );
 }
 
 /*BOOST_AUTO_TEST_CASE( ServerStartupShutdown )
