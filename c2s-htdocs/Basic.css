@@ -79,8 +79,9 @@ div.bib
 
 div.code
 {
-	width: 850px;
+  width: 850px;
   margin: 10px auto;
+  margin-bottom: 30px;
   padding: 10px;
   background-color: #fff;
   

@@ -68,6 +68,8 @@ namespace c2s
 
       std::string m_sNameToGreetFrom;
 
+      std::string m_sFinalResponseEntity;
+
     };
 
   }

@@ -45,9 +45,10 @@
       <br />
       <br />
       
-      The example explained here can also be found in a very similar form in the C2Serve source directory under <code>c2s-example</code>.
+      The example can also be found in a very similar form <a href="https://github.com/c2s/C2Serve/tree/master/c2s-example/server" target="_blank">here</a>.
       
-      <h2>Defining Path and Path Parameters</h2>
+      <br />
+      <br />
       
       The constructor of <code><i class="tn">C2SRestMethodPrototypeGET</i></code> gets a string as argument.
       This string defines the path of the REST method relative from the context root of the REST resource:
@@ -59,6 +60,7 @@
           <br />
           <i class="sw">class</i> <i class="tn">SayHelloMethod</i> : <i class="sw">public</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET&lt;&gt;</i><br />
           {<br />
+          <br />
           <i class="sw">public:</i> <br />
           <br />
           &nbsp;&nbsp;<i class="fd">SayHelloMethod()</i> <br />
@@ -66,10 +68,25 @@
           &nbsp;&nbsp;{ <br />
           &nbsp;&nbsp;}; <br />
           <br />
+          &nbsp;&nbsp;<i class="tn">SayHelloMethod</i> *<i class="fd">clone()</i> <i class="sw">const</i><br />
+          &nbsp;&nbsp;{ <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return new</i> <i class="tn">SayHelloMethod</i>();<br />
+          &nbsp;&nbsp;}; <br />
+          <br />
+          <br />
           };<br />
           <br />
         </code>
       </div>
+      
+      The method architecture is designed according to the <i>prototype pattern</i>.
+      This means that you have to implement the <code>clone</code> method (defined as pure virtual function in the base class).
+      During server initialization, one method prototype is registered for each URL.
+      C2Serve clones each prototype to get one instance for each listener thread which ensures that parallely processed requests do not affect each other.
+      This is important to know if you like to share data accross multiple GET requests.
+      You will have to pass this data as reference to all cloned method instances.
+      
+      <h2>Defining Path and Path Parameters</h2>
       
       With REST it is possible to declare path segments as parameters.
       These parameters may describe a resource that should be processed by a REST method.
@@ -177,26 +194,17 @@
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_pLogger</i>-&gt;info( <i class="m">m_sResponseEntity</i> );<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i>::build( <i class="tn">c2s</i>::<i class="m">OK</i> );<br />
           &nbsp;&nbsp;}<br />
-          <br />
-          <i class="sw">private:</i> <br />
-          <br />
-          &nbsp;&nbsp;<i class="tn">c2s</i>::<i class="tn">io</i>::<i class="tn">DateTimeLogger</i> *<i class="m">m_pLogger</i>; <br />
-          <br />
-          &nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> <i class="m">m_sResponseEntity</i>; <br />
-          <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;...<br />
           <br />
           };<br />
           <br />
         </code>
       </div>
       
-      All we do is evaluating the path and query parameters, creating a message and logging this message.
-      However, the message is only logged to the server's logger, the client is unable to see this message.
+      We evaluate the path and query parameters and create the message.
+      However, the client is unable to see this message.
       What we need is a possibility to send data back to the client.
     
       <h2>Creating Data for Response Entity</h2>
@@ -275,14 +283,15 @@
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
+<<<<<<< HEAD
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_pLogger</i>-&gt;info( <i class="m">m_sResponseEntity</i> );<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET</i>&lt;<i class="tn">std</i>::<i class="tn">string</i>&gt;::buildResponse( <i class="tn">c2s</i>::<i class="m">OK</i> , <i class="m">m_sResponseEntity</i> );<br />          
+=======
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET</i>&lt;<i class="tn">std</i>::<i class="tn">string</i>&gt;::buildResponse( <i class="tn">c2s</i>::<i class="m">OK</i> , sGreetings );<br />          
+>>>>>>> master
           &nbsp;&nbsp;}<br />
-          <br />
-          <i class="sw">private:</i> <br />
-          <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;...<br />
           <br />
           };<br />
           <br />
@@ -294,7 +303,6 @@
       Creating a REST resource is already explained in the <a href="server_startup.html">server startup section</a>.
       To add our method prototype we simply have to call <code><i class="">C2SRestResourcePrototype</i>::registerMethodPrototype</code>.
       This will register a prototype for our method which is cloned for each listener thread.
-      This ensures that parallely processed requests do not affect each other.
       
       <br />
       <br />

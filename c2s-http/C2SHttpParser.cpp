@@ -52,10 +52,6 @@
 #define METHOD_PUT "PUT "
 #define METHOD_DELETE "DELETE "
 
-#define FIELD_ACCEPT "Accept: "
-#define FIELD_CONTENT_TYPE "Content-Type: "
-#define FIELD_CONTENT_LENGTH "Content-Length: "
-
 namespace c2s
 {
 

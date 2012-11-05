@@ -65,7 +65,8 @@ namespace c2s
       if ( m_sNameToGreetFrom != sInvalidName )
         sGreetToName = sGreetToName + " from " + m_sNameToGreetFrom;
       m_pLogger->info( "Say hello" + sGreetToName );
-      return C2SRestMethodPrototypeGET<std::string>::buildResponse( OK , std::string( "=== c2s-example says hello" ) + sGreetToName + " ===" );
+      m_sFinalResponseEntity = std::string( "=== c2s-example says hello" ) + sGreetToName + " ===";
+      return C2SRestMethodPrototypeGET<std::string>::buildResponse( OK , m_sFinalResponseEntity );
     }
 
     C2SExampleRestMethodPrototypeSayHello *C2SExampleRestMethodPrototypeSayHello::clone() const

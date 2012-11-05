@@ -76,6 +76,18 @@ namespace c2s
 
     unsigned int removeChar( std::string *from , char what );
 
+    inline bool isEqualCaseInsensitive( const std::string &sLeft , const std::string &sRight )
+    {
+      if ( sLeft.size() != sRight.size() )
+        return false;
+      for ( unsigned int i = 0; i < sLeft.size(); ++i )
+      {
+        if ( ::tolower( sLeft[ i ] ) != ::tolower( sRight[ i ] ) )
+          return false;
+      }
+      return true;
+    }
+
     inline void toLowerCaseInplace( std::string &s )
     {
       std::transform( s.begin() , s.end() , s.begin() , ::tolower );
