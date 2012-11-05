@@ -189,12 +189,18 @@
           <br />
           &nbsp;&nbsp;<i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i> *<i class="fd">process</i>()<br />
           &nbsp;&nbsp;{<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> sGreetings = <i class="m">&quot;Hello&quot;</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i>::build( <i class="tn">c2s</i>::<i class="m">OK</i> );<br />
           &nbsp;&nbsp;}<br />
+          <br />
+          <i class="sw">private:</i> <br />
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;...<br />
+          <br />
+          &nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> <i class="m">m_sFinalResponseEntity</i>; <br />
           <br />
           };<br />
           <br />
@@ -278,11 +284,11 @@
           <br />
           &nbsp;&nbsp;<i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i> *<i class="fd">process</i>()<br />
           &nbsp;&nbsp;{<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> sGreetings = <i class="m">&quot;Hello&quot;</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sGreetings += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET</i>&lt;<i class="tn">std</i>::<i class="tn">string</i>&gt;::buildResponse( <i class="tn">c2s</i>::<i class="m">OK</i> , sGreetings );<br />          
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET</i>&lt;<i class="tn">std</i>::<i class="tn">string</i>&gt;::buildResponse( <i class="tn">c2s</i>::<i class="m">OK</i> , <i class="m">m_sFinalResponseEntity</i> );<br />          
           &nbsp;&nbsp;}<br />
           <br />
           };<br />
