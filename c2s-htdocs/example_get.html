@@ -189,10 +189,10 @@
           <br />
           &nbsp;&nbsp;<i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i> *<i class="fd">process</i>()<br />
           &nbsp;&nbsp;{<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i>::build( <i class="tn">c2s</i>::<i class="m">OK</i> );<br />
           &nbsp;&nbsp;}<br />
           <br />
@@ -200,7 +200,7 @@
           <br />
           &nbsp;&nbsp;&nbsp;&nbsp;...<br />
           <br />
-          &nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> <i class="m">m_sFinalResponseEntity</i>; <br />
+          &nbsp;&nbsp;<i class="tn">std</i>::<i class="tn">string</i> <i class="m">m_sResponseEntity</i>; <br />
           <br />
           };<br />
           <br />
@@ -284,16 +284,23 @@
           <br />
           &nbsp;&nbsp;<i class="tn">c2s</i>::<i class="tn">C2SHttpResponse</i> *<i class="fd">process</i>()<br />
           &nbsp;&nbsp;{<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> = <i class="m">&quot;Hello&quot;</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="tn">std</i>::<i class="tn">string</i>( <i class="m">" to "</i> ) + <i class="m">m_sNameToGreet</i>;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">if</i> ( <i class="m">m_sNameToGreetFrom</i>.size() )<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sFinalResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET</i>&lt;<i class="tn">std</i>::<i class="tn">string</i>&gt;::buildResponse( <i class="tn">c2s</i>::<i class="m">OK</i> , <i class="m">m_sFinalResponseEntity</i> );<br />          
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="m">m_sResponseEntity</i> += <i class="m">" from "</i> + <i class="m">m_sNameToGreetFrom</i>;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="sw">return</i> <i class="tn">c2s</i>::<i class="tn">C2SRestMethodPrototypeGET</i>&lt;<i class="tn">std</i>::<i class="tn">string</i>&gt;::buildResponse( <i class="tn">c2s</i>::<i class="m">OK</i> , <i class="m">m_sResponseEntity</i> );<br />          
           &nbsp;&nbsp;}<br />
           <br />
           };<br />
           <br />
         </code>
+      </div>
+      
+      <div class="note">
+        <b>Note: </b>
+        The static method <code>C2SRestMethodPrototypeGET::buildResponse</code> stores a reference to the entity object (from which the response entity is created).
+        The actual streaming to the entity string is done when the complete HTTP response string (including header) is created, so make sure that the entity object is still valid after the scope of the <code>process</code> method is left.
+        In the example above this is realized by defining the response entity as member.
       </div>
       
       <h2>Create REST Resource and Instantiate GET Method Prototype</h2>

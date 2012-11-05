@@ -16,6 +16,11 @@ div
   margin-bottom: 50px;
 }
 
+div.note
+{
+	width: 850px;
+}
+
 a:link
 {
 	color: #2D408D;
@@ -80,7 +85,7 @@ div.bib
 div.code
 {
   width: 850px;
-  margin: 10px auto;
+  margin: 20px auto;
   margin-bottom: 30px;
   padding: 10px;
   background-color: #fff;
