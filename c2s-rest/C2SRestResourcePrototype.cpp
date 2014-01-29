@@ -110,7 +110,9 @@ namespace c2s
   {
     if ( this->isAccessToContextRoot( request.header().URI ) )
 		if(m_pDefaultMethod) {
-			m_pDefaultMethod->process( request );
+			C2SHttpResponse *pResponse = m_pDefaultMethod->processRequest( request );
+			m_pResponseHandler->sendResponse( *pResponse );
+			delete pResponse;
 		} else {
 			this->createAndSendResponseFromResourceDescription( request );
 		}
