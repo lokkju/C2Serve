@@ -68,7 +68,8 @@ namespace c2s
   {
     std::istringstream strs( sParameterValueAsString );
     Type dummy = Type( 0 );
-    return ( strs >> dummy ) != 0;
+    strs >> dummy;
+    return (dummy != false);
   }
 
   //specialized for strings
