@@ -82,13 +82,13 @@ namespace c2s
     return pResource;
   }
 
-  void C2SRestResourcePrototype::registerMethodPrototype( C2SRestMethodPrototype *pMethod, bool default)
+  void C2SRestResourcePrototype::registerMethodPrototype( C2SRestMethodPrototype *pMethod, bool isDefault)
   {
     if ( this->existsMethodPrototype( pMethod ) )
       throw C2SRestException( "C2SRestResourcePrototype::registerMethodPrototype: " , "Duplicate REST method" , InternalServerError );
 
     m_registeredMethodPrototypes.push_back( pMethod );
-	if (default) {
+	if (isDefault) {
 		m_pDefaultMethod = pMethod;
 	}
   }

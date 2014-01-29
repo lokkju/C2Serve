@@ -55,7 +55,7 @@ namespace c2s
 
     C2SHttpResourcePrototype *clone() const;
 
-    void registerMethodPrototype( C2SRestMethodPrototype *pMethod, bool default = false );
+    void registerMethodPrototype( C2SRestMethodPrototype *pMethod, bool isDefault = false );
 
   private:
 
