@@ -77,6 +77,8 @@ namespace c2s
     C2SRestMethodPrototypeList m_registeredMethodPrototypes;
 
     C2SRestResourceDescription m_resourceDescription;
+	
+	C2SRestMethodPrototype m_pDefaultMethod;
 
   };
 

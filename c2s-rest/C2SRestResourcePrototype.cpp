@@ -82,12 +82,15 @@ namespace c2s
     return pResource;
   }
 
-  void C2SRestResourcePrototype::registerMethodPrototype( C2SRestMethodPrototype *pMethod )
+  void C2SRestResourcePrototype::registerMethodPrototype( C2SRestMethodPrototype *pMethod, bool default = false)
   {
     if ( this->existsMethodPrototype( pMethod ) )
       throw C2SRestException( "C2SRestResourcePrototype::registerMethodPrototype: " , "Duplicate REST method" , InternalServerError );
 
     m_registeredMethodPrototypes.push_back( pMethod );
+	if (default) {
+		m_pDefaultMethod = pMethod;
+	}
   }
 
   bool C2SRestResourcePrototype::existsMethodPrototype( const C2SRestMethodPrototype *pMethodPrototypeToCheck ) const
@@ -106,7 +109,12 @@ namespace c2s
   void C2SRestResourcePrototype::processRequest( const C2SHttpRequest &request )
   {
     if ( this->isAccessToContextRoot( request.header().URI ) )
-      this->createAndSendResponseFromResourceDescription( request );
+		if(m_pDefaultMethod) {
+			C2SHttpResponse response = m_pDefaultMethod.process( request );
+			m_pDefaultMethod->sendResponse( response );
+		} else {
+			this->createAndSendResponseFromResourceDescription( request );
+		}
     else
       this->createAndSendResponseFromMethodWithBestMatchForRequest( request );
   }
