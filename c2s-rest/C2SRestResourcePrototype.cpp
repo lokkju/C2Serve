@@ -82,6 +82,9 @@ namespace c2s
     return pResource;
   }
 
+  void C2SRestResourcePrototype::registerMethodPrototype( C2SRestMethodPrototype *pMethod) {
+	  this->registerMethodPrototype( pMethod,  isDefault)
+  }
   void C2SRestResourcePrototype::registerMethodPrototype( C2SRestMethodPrototype *pMethod, bool isDefault)
   {
     if ( this->existsMethodPrototype( pMethod ) )

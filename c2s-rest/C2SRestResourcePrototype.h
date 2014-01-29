@@ -57,6 +57,8 @@ namespace c2s
 
     void registerMethodPrototype( C2SRestMethodPrototype *pMethod, bool isDefault = false );
 
+	void registerMethodPrototype( C2SRestMethodPrototype *pMethod );
+
   private:
 
     C2SRestResourcePrototype( const std::string &sHostName , const std::string &sContextRoot );
