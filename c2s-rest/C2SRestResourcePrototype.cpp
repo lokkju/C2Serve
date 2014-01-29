@@ -83,7 +83,7 @@ namespace c2s
   }
 
   void C2SRestResourcePrototype::registerMethodPrototype( C2SRestMethodPrototype *pMethod) {
-	  this->registerMethodPrototype( pMethod,  false)
+	  this->registerMethodPrototype( pMethod,  false);
   }
   void C2SRestResourcePrototype::registerMethodPrototype( C2SRestMethodPrototype *pMethod, bool isDefault)
   {
