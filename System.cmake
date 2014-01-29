@@ -1,21 +1,21 @@
 
 cmake_minimum_required(VERSION 2.6)
 
-set( GCC_CC_FLAGS "-g -Wall" )
+set( GCC_CC_FLAGS "${GCC_CC_FLAGS} -g -Wall" )
 
 add_definitions( -D_FILE_OFFSET_BITS=64 -DBOOST_ALL_NO_LIB )
 
 if( CMAKE_SYSTEM_NAME STREQUAL "Linux" )
   add_definitions( -DLINUX )
-  set( CMAKE_CXX_FLAGS ${GCC_CC_FLAGS} )
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_CC_FLAGS}" )
 elseif( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
-  set( CMAKE_CXX_FLAGS ${GCC_CC_FLAGS} )
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_CC_FLAGS}" )
   add_definitions( -DDARWIN )
   message( STATUS "Configuration for mac osx" )
   set( OS_SUB_DIR "osx-gcc" )
 elseif( CMAKE_SYSTEM_NAME STREQUAL "Windows" )
   message( STATUS "Configuration for Windows 32bit" )
-  set( CMAKE_CXX_FLAGS "/EHa /W4" )
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHa /W4" )
   add_definitions( -DWINXX )
   #add_definitions( -D_CRTDBG_MAP_ALLOC )
 endif( CMAKE_SYSTEM_NAME STREQUAL "Linux")
