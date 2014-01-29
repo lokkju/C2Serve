@@ -98,7 +98,7 @@ namespace c2s
 
       //get path segment
       unsigned int l1 = 0;
-      while( l1 < size1 && s1[ l1 ] != '/' )
+      while( l1 < size1 && s1[ l1 ] != '/' && s1[ l1 ] != '?' )
         ++l1;
 
       //skip slashes
@@ -110,7 +110,7 @@ namespace c2s
 
       //get path segment
       unsigned int l2 = 0;
-      while( l2 < size2 && s2[ l2 ] != '/' )
+      while( l2 < size2 && s2[ l2 ] != '/' && s1[ l1 ] != '?')
         ++l2;
 
       if ( !equals( s1 , l1 , s2 , l2 ) )
