@@ -125,7 +125,8 @@ namespace c2s
 
   bool C2SRestResourcePrototype::isAccessToContextRoot( const std::string &sResourceContext ) const
   {
-    return uriEquals( sResourceContext.c_str() , sResourceContext.size() , m_sContextRoot.c_str() , m_sContextRoot.size() , false );
+		if (sResourceContext.empty()) return true;
+		return uriEquals( sResourceContext.c_str() , sResourceContext.size() , m_sContextRoot.c_str() , m_sContextRoot.size() , false );
   }
 
   void C2SRestResourcePrototype::createAndSendResponseFromResourceDescription( const C2SHttpRequest &request )
